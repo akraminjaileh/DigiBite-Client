@@ -10,6 +10,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
 import { CategoryComponent } from './component/category/category.component';
 import { SharedModule } from './Modules/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,12 +21,15 @@ import { SharedModule } from './Modules/shared/shared.module';
     AccountComponent,
     CartComponent,
     OrderComponent,
-    CategoryComponent
+    CategoryComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

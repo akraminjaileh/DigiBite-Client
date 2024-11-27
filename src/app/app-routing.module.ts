@@ -8,7 +8,7 @@ import { OrderComponent } from './pages/order/order.component';
 
 const routes: Routes = [
   { path: "", component: MainComponent },
-  { path: "auth", loadComponent: () => import("./Modules/auth/auth.module").then(x => x.AuthModule) },
+  { path: "auth", loadChildren: () => import("./Modules/auth/auth.module").then(x => x.AuthModule) },
   { path: "account", component: AccountComponent },
   { path: "cart", component: CartComponent },
   { path: "itemDetails", component: ItemDetailsComponent },
