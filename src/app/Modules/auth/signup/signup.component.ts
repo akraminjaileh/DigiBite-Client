@@ -16,7 +16,7 @@ export class SignupComponent {
   constructor(private fb: FormBuilder, private service: AuthService) {
 
     this.signupForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]{1,20}$')]],
+      firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]{2,20}$')]],
       lastName: ['', Validators.pattern('^[A-Za-z]{1,20}$')],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^07[0-9]{8}$')]],
@@ -26,15 +26,7 @@ export class SignupComponent {
   }
   onSubmit() {
     if (this.signupForm.invalid) return
-    this.service.signup(this.signupForm.value).subscribe({
-      next: (res: ApiResponse) => {
-        res.Data
-      },
-      error(err) {
-        console.log(err)
-      },
-
-    })
+    this.service.signup(this.signupForm.value).subscribe();
 
   }
 

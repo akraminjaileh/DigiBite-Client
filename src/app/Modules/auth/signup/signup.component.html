@@ -9,12 +9,13 @@
                     <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">First Name is
                         required</mat-error>
                     <mat-error *ngIf="signupForm.get('firstName')?.hasError('pattern')">only alphabetic
-                        allow</mat-error>
+                        allow at least 2</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Last Name</mat-label>
                     <input matInput formControlName="lastName" maxlength="20">
-                    <mat-error *ngIf="signupForm.get('lastName')?.hasError('pattern')">only alphabetic allow</mat-error>
+                    <mat-error *ngIf="signupForm.get('lastName')?.hasError('pattern')">only alphabetic allow at least
+                        2</mat-error>
                 </mat-form-field>
             </div>
 
@@ -53,7 +54,8 @@
             </mat-form-field>
 
             <div class="d-flex justify-content-center gap-3">
-                <button type="submit" mat-stroked-button extended color="primary" class="w-100">
+                <button [disabled]="signupForm.invalid" type="submit" mat-stroked-button extended color="primary"
+                    class="w-100">
                     <mat-icon>check</mat-icon>
                     Create Account
                 </button>
