@@ -1,0 +1,32 @@
+.header-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .toolbar-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .toolbar-menu {
+        flex-grow: 1;
+        /* Take available space */
+        display: flex;
+        justify-content: center;
+
+        /* Center the menu */
+        .menu-list {
+            color: white;
+            display: flex;
+            gap: 20px;
+            /* Space between menu items */
+        }
+    }
+
+    .toolbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Space between action buttons */
+    }
+}

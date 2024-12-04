@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core"
 import { Router } from "@angular/router"
 import { ToastrService } from "ngx-toastr"
-import { catchError, Observable } from "rxjs"
+import { catchError, Observable, throwError } from "rxjs"
 import { apiUrls } from "../config/api-urls"
 
 @Injectable()
@@ -17,21 +17,28 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
+
                 if (error.status == 401) {
+                    this.toaster.warning("you must to login")
                     this.router.navigate([apiUrls.account.login])
                     localStorage.removeItem('digiToken')
-                    this.toaster.warning("you must to login")
 
                 }
 
                 else if (error.status == 0) {
                     this.toaster.error('Something went wrong.')
                 }
-                else {
-                    this.toaster.error(error.error.errorMsg)
+
+                else if (error.error.errorMsg == "Login is not allowed. Please confirm your email") {
+                    return throwError(() => error);
                 }
+                else {
+                    this.toaster.error(error.error?.errorMsg || 'An unexpected error occurred.')
+                }
+
                 throw error
             })
         )
     }
 }
+

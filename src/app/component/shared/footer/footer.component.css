@@ -1,0 +1,14 @@
+.footer-toolbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    /* Center the text horizontally */
+    align-items: center;
+    /* Center the text vertically */
+    padding: 10px 0;
+    /* Add some vertical padding */
+    font-size: 14px;
+    /* Adjust font size */
+}

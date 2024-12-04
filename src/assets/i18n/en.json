@@ -1,5 +1,41 @@
 {
-    "auth": {
-        "CreateNewAccount": "Create New Account"
+    "CreateNewAccount": "Create New Account",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Email": "Email",
+    "PhoneNumber": "Phone Number",
+    "Password": "Password",
+    "Btn_CreateAccount": "Create Account",
+    "Btn_Back": "Create Account",
+    "HaveAccount": "Already have an account?",
+    "Login": "Log In",
+    "Don`t have an account?": "Don`t have an account?",
+    "Sign up": "Sign up",
+    "Home": "Home",
+    "Forget Password?": "Forget Password ?",
+    "instructions to reset password": "Enter the email address you used when you joined, and we’ll send you instructions to reset your password.",
+    "Cancel": "Cancel",
+    "Send Reset Instructions": "Send Reset Instructions",
+    "Reset your password": "Reset your password",
+    "Confirm Password": "Confirm Password",
+    "Return to": "Return to",
+    "Confirmation Account": "Confirmation Account",
+    "ConfirmationText1": "A confirmation mail with instructions has been sent to",
+    "ConfirmationText2": "Follow those instructions toconfirm your email address and activate your account.",
+    "Didn't receive the link?": "Didn't receive the link?",
+    "Resend Link": "Resend Link",
+    "Resend Link in": "Resend Link in",
+    "confirm-page": "Your account has been successfully confirmed. You will be redirected to login.",
+    "You will be redirected within": "You will be redirected within",
+    "error": {
+        "NameRequired": "First Name is required",
+        "NamePattern": "only alphabetic allow at least 2",
+        "EmailRequired": "Email address is required",
+        "EmailPattern": "Please enter a valid email address",
+        "PhoneRequired": "Phone Number is required",
+        "PhonePattern": "Phone Number is not correct Ex. 07xxxxxxxx",
+        "PasswordRequired": "Password is required",
+        "PasswordPattern": "Password At least 6 characters,uppercase, lowercase, and a number.",
+        "Passwords do not match.": "Passwords do not match."
     }
 }

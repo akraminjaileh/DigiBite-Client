@@ -1,7 +1,6 @@
-const localURL = "https://localhost:7161";
+const localURL: string = "https://localhost:7161";
 const productionURL = "";
-
-const BASE_URL = localURL;
+const BASE_URL: string = localURL;
 
 export const apiUrls = {
     account: {
