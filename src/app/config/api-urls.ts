@@ -14,4 +14,8 @@ export const apiUrls = {
         updateProfileImage: `${BASE_URL}/api/Account/UpdateProfileImage`,
         getProfile: `${BASE_URL}/api/Account/GetProfile`,
     },
+    item: {
+        item: `${BASE_URL}/api/Item`,
+
+    },
 };

@@ -27,6 +27,11 @@
     "Resend Link in": "اعادة ارسال خلال",
     "confirm-page": "تم تأكيد حسابك بنجاح سيتم اعادة توجيهك الى تسجيل الدخول",
     "You will be redirected within": "سيتم اعاده توجيهك خلال",
+    "Currency": "دأ",
+    "Pieces": "قطعة",
+    "ml": "مل",
+    "gm": "جرام",
+    "Ingredients": "الأضافات",
     "error": {
         "NameRequired": "الاسم الأول مطلوب",
         "NamePattern": "يسمح فقط بالأحرف الأبجدية على الأقل 2",
