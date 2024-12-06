@@ -1,24 +1,24 @@
+import { DOCUMENT } from "@angular/common";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 @Injectable()
 export class LangInterceptor implements HttpInterceptor {
 
-    constructor() { }
+    constructor(@Inject(DOCUMENT) private document: Document) { }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-        let digiLang: string | null = localStorage.getItem('digiLang');
-        if (digiLang) {
-            const newRequest = request.clone({
-                headers: request.headers
-                    .append('Accept-Language', digiLang)
-            })
-            return next.handle(newRequest);
-        }
+        let lang: string = this.document.documentElement.lang || localStorage.getItem('lang') || 'en';
 
-        return next.handle(request)
+        const newRequest = request.clone({
+            headers: request.headers
+                .set('Accept-Language', lang)
+        })
+        console.log("newRequest*******")
+        console.log(newRequest)
+        return next.handle(newRequest);
 
     }
 }

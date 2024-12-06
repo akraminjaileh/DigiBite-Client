@@ -23,6 +23,7 @@ import { MaterialModule } from './Modules/material/material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NavComponent } from './component/shared/nav/nav.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
+import { LangInterceptor } from './interceptor/lang.interceptor';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -63,6 +64,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LangInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -16,7 +16,8 @@
 
     <!-- Actions on the Right -->
     <div class="toolbar-actions">
-        <button mat-icon-button>
+        <button (click)="changLang()" mat-icon-button>
+            <small>{{lang}}</small>
             <mat-icon>language</mat-icon>
         </button>
         <button mat-icon-button>
