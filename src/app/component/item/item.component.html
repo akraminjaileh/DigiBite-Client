@@ -17,7 +17,8 @@
                 </div>
             </div>
             <div class="card-footer text-center">
-                <small class="text-body-secondary">{{'Currency' | translate}} {{item.price}}</small>
+                <small class="text-body-secondary">{{('Price' | translate)+': '+item.price +('Currency' |
+                    translate)}}</small>
             </div>
         </div>
     </div>

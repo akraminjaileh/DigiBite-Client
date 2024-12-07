@@ -33,6 +33,7 @@
     "gm": "gm",
     "Ingredients": "Ingredients",
     "All rights reserved.": "All rights reserved.",
+    "Price": "Price",
     "error": {
         "NameRequired": "First Name is required",
         "NamePattern": "only alphabetic allow at least 2",

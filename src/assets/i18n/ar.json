@@ -33,6 +33,7 @@
     "gm": "جرام",
     "Ingredients": "الأضافات",
     "All rights reserved.": "جميع الحقوق محفوظة",
+    "Price": "السعر",
     "error": {
         "NameRequired": "الاسم الأول مطلوب",
         "NamePattern": "يسمح فقط بالأحرف الأبجدية على الأقل 2",
