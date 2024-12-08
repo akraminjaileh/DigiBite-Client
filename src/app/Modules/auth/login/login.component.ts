@@ -34,7 +34,7 @@ export class LoginComponent {
     if (this.loginForm.invalid) return
     this.service.login(this.loginForm.value).subscribe({
       next: (res) => {
-        localStorage.setItem("digiToken", res);
+        localStorage.setItem("token", res);
         this.route.navigateByUrl("");
       },
       error: (err) => {

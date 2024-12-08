@@ -9,12 +9,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    let digiToken: string | null = localStorage.getItem("digiToken");
+    let token: string | null = localStorage.getItem("token");
 
     const newRequest = request.clone({
       headers: request.headers
         .set('Content-Type', 'application/json')
-        .set('Authorization', `Bearer ${digiToken}`)
+        .set('Authorization', `Bearer ${token}`)
     });
 
     console.log(newRequest.headers)

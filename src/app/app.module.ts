@@ -24,6 +24,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavComponent } from './component/shared/nav/nav.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { LangInterceptor } from './interceptor/lang.interceptor';
+import { PrimengModule } from './Modules/primeng/primeng.module';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ToastrModule.forRoot(),
     HttpClientModule,
     MaterialModule,
+    PrimengModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

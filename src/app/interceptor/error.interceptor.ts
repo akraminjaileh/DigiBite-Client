@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if (error.status == 401) {
                     this.toaster.warning("you must to login")
                     this.router.navigate([apiUrls.account.login])
-                    localStorage.removeItem('digiToken')
+                    localStorage.removeItem('token')
 
                 }
 
