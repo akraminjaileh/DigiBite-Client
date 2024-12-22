@@ -10,7 +10,7 @@ export class ApiHandlerService {
 
   constructor(private http: HttpClient) { }
 
-  get(url: string, query: { [key: string]: any } | undefined): Observable<ApiResponse> {
+  get(url: string, query?: { [key: string]: any }): Observable<ApiResponse> {
     if (!query)
       return this.http.get<ApiResponse>(url)
 

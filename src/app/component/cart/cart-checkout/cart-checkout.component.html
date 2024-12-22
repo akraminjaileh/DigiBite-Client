@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="grid justify-content-center">
+
+        <!--Item Name-->
+        <div class="m-2 p-3 card  col">
+            <div *ngFor="let ci of cart?.cartItems let i=index">
+                <div class="flex justify-content-between align-items-center mx-2 font-semibold text-color-secondary">
+                    <span class="text-base font-bold">
+                        {{ci.itemInCart.name}}
+                        <span class="text-xs">
+                            {{' x ' + ci.quantity}}
+                        </span>
+                    </span>
+
+                    <span class="text-sm text-primary">
+                        {{('Currency' | translate) + totalPrice(ci)}}
+                    </span>
+                </div>
+                <hr *ngIf="cart?.cartItems?.length != i+1">
+            </div>
+
+        </div>
+
+        <!--footer-->
+        <div class="m-2 p-3 card  col">
+            <h2 class="text-base font-bold">
+                Payment Summary
+            </h2>
+            <!--Subtotal-->
+            <div class="flex justify-content-between  flex-wrap">
+                <span class="text-color-secondary text-xs">Subtotal</span>
+                <span class="text-xs text-primary">
+                    {{cart?.subtotal + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Service Fee-->
+            <div *ngIf="cart?.serviceFee" class="flex justify-content-between  flex-wrap">
+                <span class="text-color-secondary text-xs">Service Fee</span>
+                <span class="text-xs text-primary">
+                    {{cart?.serviceFee + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Delivery Fee-->
+            <div *ngIf="cart?.deliveryFee" class="flex justify-content-between  flex-wrap">
+                <span class="text-color-secondary text-xs">Delivery Fee</span>
+                <span class="text-xs text-primary">
+                    {{cart?.deliveryFee + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Discount-->
+            <div *ngIf="cart?.discount" class="flex justify-content-between  flex-wrap">
+                <span class="text-color-secondary text-xs">Discount</span>
+                <span class="text-xs text-primary">
+                    {{cart?.discount + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Voucher Discount-->
+            <div *ngIf="cart?.voucherDiscount" class="flex justify-content-between  flex-wrap">
+                <span class="text-color-secondary text-xs">Voucher Discount</span>
+                <span class="text-xs text-primary">
+                    {{cart?.voucherDiscount + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Total Amount-->
+            <div class="flex justify-content-between  flex-wrap">
+                <span class="text-xs font-semibold">Total Amount</span>
+                <span class="text-xs text-primary font-semibold">
+                    {{cart?.totalAmount + ('Currency' | translate)}}
+                </span>
+            </div>
+            <!--Checkout-->
+            <div>
+                <button pButton pRipple [label]="('Checkout' | translate) +'&emsp;&emsp;&emsp;'
+             +(cart?.totalAmount) + ('Currency' | translate)" class="p-button w-100 mt-5"></button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

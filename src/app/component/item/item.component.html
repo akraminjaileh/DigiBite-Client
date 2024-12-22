@@ -1,37 +1,10 @@
-<div class="row row-cols-2 row-cols-md-4 g-4">
-    <!--Single Card-->
-    <div class="col" *ngFor="let item of items">
-        <div class="card h-100">
-            <img (error)="onImageError($event)" [src]="item.primaryImageUrl || noImage" class="card-img-top"
-                alt="DigiBite">
-            <div class="card-body">
-                <h2 class="card-title">{{item.name}}</h2>
-                <div class="card-text">
-                    <span [hidden]="item.ingredients.length == 0" class="text-body fw-bold">
-                        {{('Ingredients' | translate) + ': '}}
-                    </span>
-                    <span class="m-1" *ngFor="let ing of item.ingredients let i= index">
-                        {{ing.name + '*' + ing.qty + (ing.ingredientUnit | translate)}}
-                        <span *ngIf="i+1 < item.ingredients.length">,</span>
-                    </span>
-                </div>
-            </div>
-            <div class="card-footer text-center">
-                <small class="text-body-secondary">{{('Price' | translate)+': '+item.price +('Currency' |
-                    translate)}}</small>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!--prime test-->
-
 <div class="card">
     <p-dataView #dv [value]="items" [layout]="layout" [lazy]="true" [rows]="pageSize" [totalRecords]="totalRecords"
         [paginator]="true" (onLazyLoad)="loadData($event)" [first]="first">
         <ng-template pTemplate="header">
-            <div class="flex justify-content-end">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dropdown [options]="sortOptions" placeholder="({{'Sort By Price'|translate}})"
+                    (onChange)="onSortChange($event)" [showClear]="true" styleClass="mb-2 md:mb-0"></p-dropdown>
                 <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
         </ng-template>
@@ -39,7 +12,8 @@
         <ng-template let-product pTemplate="listItem">
             <div class="col-12">
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-                    <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="noImage"
+                    <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+                        [src]="imageHandler(product.primaryImageUrl )" (error)="onImageError($event)"
                         [alt]="product.name" />
                     <div
                         class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
@@ -57,9 +31,9 @@
                             </span>
                         </div>
                         <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                            <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
+                            <span class="text-2xl font-semibold">{{product.price + ('Currency' | translate)}}</span>
                             <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
-                                [disabled]="!product.isAvailable"></button>
+                                [disabled]="!product.isAvailable" (click)="itemDetails(product.id)"></button>
                         </div>
                     </div>
                 </div>
@@ -76,7 +50,8 @@
                             [severity]="product.isAvailable ? 'success':'danger'"></p-tag>
                     </div>
                     <div class="flex flex-column align-items-center gap-3 py-5">
-                        <img class="w-9 shadow-2 border-round" [src]="noImage" [alt]="product.name" />
+                        <img class="w-9 shadow-2 border-round" [src]="imageHandler(product.primaryImageUrl )"
+                            (error)="onImageError($event)" [alt]="product.name" />
                         <div class="text-2xl font-bold">{{ product.name }}</div>
                         <span class="font-medium text-secondary text-sm">
                             <span *ngFor="let ing of product.ingredients let i= index">
@@ -86,9 +61,9 @@
                         </span>
                     </div>
                     <div class="flex align-items-center justify-content-between">
-                        <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
+                        <span class="text-2xl font-semibold">{{product.price + ('Currency' | translate)}}</span>
                         <button pButton icon="pi pi-shopping-cart" class="p-button-rounded"
-                            [disabled]="!product.isAvailable"></button>
+                            [disabled]="!product.isAvailable" (click)="itemDetails(product.id)"></button>
                     </div>
                 </div>
             </div>
@@ -96,6 +71,4 @@
 
 
     </p-dataView>
-    <!-- <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [totalRecords]="120"
-        [rowsPerPageOptions]="[10, 20, 30]"></p-paginator> -->
 </div>

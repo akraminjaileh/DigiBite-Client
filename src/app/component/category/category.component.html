@@ -1,1 +1,24 @@
-<p>category works!</p>
+<div class="container">
+    <div class="grid justify-content-center">
+        <!--Static Default Category-->
+        <div class="col-fixed" style="width:120px">
+            <div (click)="onClickCategory(0)" class="card text-center border-0 bg-transparent">
+                <img src="assets\Images\Default Category.jpg" alt="Default Category"
+                    class="category-image rounded-circle img-fluid mx-auto d-block cursor-pointer hover:shadow-6">
+                <div class="card-body p-2">
+                    <p class="card-text text-muted small mt-2">{{ 'All' | translate }}</p>
+                </div>
+            </div>
+        </div>
+        <!--API Category-->
+        <div *ngFor="let category of categories" class="col-fixed" style="width:120px">
+            <div (click)="onClickCategory(category.id)" class="card text-center border-0 bg-transparent">
+                <img [src]="imageHandler(category.imageUrl)" (error)="onImageError($event)" [alt]="category.name"
+                    class="category-image rounded-circle img-fluid mx-auto d-block cursor-pointer hover:shadow-6">
+                <div class="card-body p-2">
+                    <p class="card-text text-muted small mt-2">{{ category.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

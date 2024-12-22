@@ -10,7 +10,6 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private spinner: NgxSpinnerService) { }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.counter++
-    console.log(this.counter)
     this.spinner.show()
     return next.handle(request).pipe(finalize(() => {
       this.counter--

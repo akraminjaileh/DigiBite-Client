@@ -3,6 +3,7 @@ const productionURL = "";
 const BASE_URL: string = localURL;
 
 export const apiUrls = {
+    base: `${BASE_URL}`,
     account: {
         login: `${BASE_URL}/api/Account/Login`,
         signup: `${BASE_URL}/api/Account/Signup`,
@@ -16,6 +17,16 @@ export const apiUrls = {
     },
     item: {
         item: `${BASE_URL}/api/Item`,
+    },
+    category: {
+        category: `${BASE_URL}/api/Category`,
 
+    },
+    CustomerAction: {
+        getCart: `${BASE_URL}/api/CustomerAction/Cart`,
+        addToCart: `${BASE_URL}/api/CustomerAction/AddToCart`,
+        updateQuantity: `${BASE_URL}/api/CustomerAction/UpdateQuantity`,
+        address: `${BASE_URL}/api/CustomerAction/Address`,
+        defaultAddress: `${BASE_URL}/api/CustomerAction/DefaultAddress`,
     },
 };

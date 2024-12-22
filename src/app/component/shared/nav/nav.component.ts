@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorService } from 'src/app/Services/behavior.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,14 +12,17 @@ import { TranslateService } from '@ngx-translate/core';
 export class NavComponent {
 
   lang: string = 'Ar';
+  SidebarVisible: boolean = false;
 
   constructor(
     private translate: TranslateService,
     @Inject(DOCUMENT) private document: Document,
-    private router: Router) { }
+    private router: Router,
+    private behavior: BehaviorService) { }
 
 
   ngOnInit(): void {
+    this.behavior.getSidebarVisible().subscribe(x => this.SidebarVisible = x)
     let local = localStorage.getItem('lang')
     if (local) {
 
@@ -60,6 +64,10 @@ export class NavComponent {
       }).then(() => {
         this.router.navigate([currentUrl]);
       });
+  }
+
+  openCart() {
+    this.behavior.setSidebarVisible(true);
   }
 
 }

@@ -1,0 +1,14 @@
+<div class="flex flex-column align-items-center gap-3">
+    <div *ngFor="let a of addresses" class="card w-7">
+        <div class="flex justify-content-between align-items-center p-5">
+            <span>
+                <p class="text-lg font-medium text-color-secondary">{{'Building Name: '+a.buildingName}}</p>
+                <p class="text-xs text-color-secondary">{{'Apartment Number: '+a.apartmentNumber}}</p>
+            </span>
+            <span>
+                <p-radioButton [(ngModel)]="addressId" (ngModelChange)="selectedAddress()"
+                    [value]="a.id"></p-radioButton>
+            </span>
+        </div>
+    </div>
+</div>

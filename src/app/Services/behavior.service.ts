@@ -1,23 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BehaviorService {
 
-  private email: BehaviorSubject<string>;
+  private categoryId: BehaviorSubject<number | null>;
+  private sidebarVisible: BehaviorSubject<boolean>;
+  private addressId: BehaviorSubject<number | undefined>;
 
   constructor() {
-    this.email = new BehaviorSubject<string>('');
+    this.categoryId = new BehaviorSubject<number | null>(null);
+    this.sidebarVisible = new BehaviorSubject<boolean>(false);
+    this.addressId = new BehaviorSubject<number | undefined>(undefined);
   }
 
-  setEmail(input: string) {
-    return this.email.next(input)
+  setCategoryId(input: number) {
+    return this.categoryId.next(input)
   }
 
-  getEmail() {
+  getCategoryId(): Observable<number | null> {
+    return this.categoryId.asObservable();
+  }
 
+  setSidebarVisible(input: boolean) {
+    return this.sidebarVisible.next(input)
+  }
+
+  getSidebarVisible(): Observable<boolean> {
+    return this.sidebarVisible.asObservable();
+  }
+
+  setAddressId(input: number) {
+    return this.addressId.next(input)
+  }
+
+  getAddressId(): Observable<number | undefined> {
+    return this.addressId.asObservable();
   }
 
 }

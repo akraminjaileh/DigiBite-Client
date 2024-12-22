@@ -20,7 +20,7 @@
             <small>{{lang}}</small>
             <mat-icon>language</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openCart()">
             <mat-icon>shopping_cart</mat-icon>
         </button>
         <button mat-icon-button>
@@ -29,3 +29,6 @@
 
     </div>
 </mat-toolbar>
+
+<!--Cart Sidebar-->
+<app-cart-sidebar *ngIf="SidebarVisible"></app-cart-sidebar>

@@ -16,9 +16,7 @@ export class LangInterceptor implements HttpInterceptor {
             headers: request.headers
                 .set('Accept-Language', lang)
         })
-        console.log("newRequest*******")
-        console.log(newRequest)
-        return next.handle(newRequest);
 
+        return next.handle(newRequest);
     }
 }

@@ -38,7 +38,6 @@ export class LoginComponent {
         this.route.navigateByUrl("");
       },
       error: (err) => {
-        console.log(err.error)
         if (err.error.errorMsg == "Login is not allowed. Please confirm your email")
           this.sendConfirmationEmailFromLogin();
       }

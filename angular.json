@@ -29,13 +29,13 @@
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
-              "src/styles.css",
-              "src/theme.scss",
               "node_modules/ngx-spinner/animations/fire.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/primeflex/primeflex.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/themes/saga-green/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/styles.css",
+              "src/theme.scss"
             ],
             "scripts": []
           },

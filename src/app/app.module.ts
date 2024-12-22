@@ -4,10 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-component/app.component';
 import { MainComponent } from './pages/main/main.component';
 import { ItemComponent } from './component/item/item.component';
-import { ItemDetailsComponent } from './pages/item-details/item-details.component';
+import { ItemDetailsComponent } from './component/item-details/item-details.component';
 import { AccountComponent } from './pages/account/account.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { OrderComponent } from './pages/order/order.component';
 import { CategoryComponent } from './component/category/category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -25,6 +23,12 @@ import { NavComponent } from './component/shared/nav/nav.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { LangInterceptor } from './interceptor/lang.interceptor';
 import { PrimengModule } from './Modules/primeng/primeng.module';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { DefaultAddressComponent } from './component/address/default-address/default-address.component';
+import { ListAddressesComponent } from './component/address/list-addresses/list-addresses.component';
+import { CartSidebarComponent } from './component/cart/cart-sidebar/cart-sidebar.component';
+import { CartCheckoutComponent } from './component/cart/cart-checkout/cart-checkout.component';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -38,13 +42,16 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ItemComponent,
     ItemDetailsComponent,
     AccountComponent,
-    CartComponent,
-    OrderComponent,
     CategoryComponent,
     NotFoundComponent,
     HomeComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    CheckoutComponent,
+    DefaultAddressComponent,
+    ListAddressesComponent,
+    CartSidebarComponent,
+    CartCheckoutComponent
 
   ],
   imports: [
@@ -86,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: ErrorInterceptor,
       multi: true,
     },
+    DialogService
   ],
   bootstrap: [AppComponent]
 })

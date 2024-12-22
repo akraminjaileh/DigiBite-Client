@@ -11,6 +11,7 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
 .logo-container {
     position: absolute;
     top: 10px;
@@ -34,4 +35,26 @@ body {
 
 .dialog-close:hover {
     color: red;
+}
+
+
+.p-galleria img {
+    border-radius: 15px;
+    border: solid 1px gray;
+}
+
+
+.p-galleria-thumbnail-container {
+    background-color: white !important;
+    /* margin: 0 30px; */
+}
+
+.p-galleria-thumbnail-container img {
+    border-radius: 5px;
+}
+
+.p-inputnumber-input {
+    flex: 1 1 auto;
+    width: 50px;
+    margin-left: -130px;
 }

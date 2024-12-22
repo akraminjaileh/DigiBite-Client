@@ -1,0 +1,81 @@
+<div class="grid">
+    <!--gallery-->
+    <div class="col-7">
+        <p-galleria [value]="item.imageUrls" thumbnailsPosition="button" [showItemNavigatorsOnHover]="true"
+            [showItemNavigators]="true" [containerStyle]="{ 'max-width': '440px' }" [numVisible]="3">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="imageHandler(item.imageUrl)" (error)="onImageError($event)"
+                    [alt]="item.altText || item.fileName" style="width: 100%; height: auto; display: block;" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="imageHandler(item.imageUrl)" (error)="onImageError($event)"
+                        style="display: block; max-width: 150px;" [alt]="item.altText || item.fileName" />
+                </div>
+            </ng-template>
+        </p-galleria>
+        <!--Special Notes-->
+        <div class="p-float-label my-3">
+            <textarea rows="5" cols="30" id="specialNotes" pInputTextarea [(ngModel)]="specialNotes"></textarea>
+            <label for="specialNotes">{{'Special Notes' | translate}}</label>
+        </div>
+        <!--Add TO Cart-->
+        <div class="mt-5 sticky left-0 top90 flex flex-row flex-wrap gap-3 align-items-center">
+            <div class="flex-auto">
+                <button (click)="addToCart()" pButton pRipple [label]="('Add To Cart' | translate) +'&emsp;&emsp;&emsp;'+ 
+            totalPrice + ('Currency' | translate)" class="p-button"></button>
+            </div>
+            <div class="flex-auto">
+                <p-inputNumber [(ngModel)]="qty" mode="decimal" [showButtons]="true" [min]="1" [max]="100">
+                </p-inputNumber>
+            </div>
+        </div>
+    </div>
+    <!--content-->
+    <div class="col-5 justify-content-start">
+        <!--Item Header Name,Category Name, Price-->
+        <h1 class="mat-headline-3 justify-content-start">
+            <span>{{item.name}}</span>
+            <div class="flex align-items-center">
+                <p-chip class="me-5" [label]="item.categoryName || 'UnCategories'" icon="pi pi-tag"></p-chip>
+                <span class="text-2xl font-semibold text-color-secondary">{{item.price + ('Currency' |
+                    translate)}}</span>
+            </div>
+        </h1>
+        <!--Item Description-->
+        <div class="flex align-items-center justify-content-start">
+            <h2 class="me-2">{{('Description' | translate) + ':'}}</h2>
+            <p>{{item.description}}</p>
+        </div>
+        <!--Item Ingredient-->
+        <div class="flex align-items-center gap-2 flex-wrap my-4">
+            <p-chip *ngFor="let ing of item.ingredients"
+                [label]="ing.name + ': ' + ing.qty + ' '+(ing.ingredientUnit | translate)"
+                [image]="imageHandler(ing.imageUrl) || ''"></p-chip>
+        </div>
+        <!--Addon Container Name-->
+        <div *ngFor="let addon of item.addOnContainers">
+            <h2 class="text-xl font-semibold">
+                {{addon.name}}
+                <span class="text-sm text-color-secondary font-normal">
+                    {{"("+('Optional' | translate)+")"}}
+                </span>
+            </h2>
+            <!--Addon Item-->
+            <div *ngFor="let a of addon.addons" class="grid align-items-center">
+                <span class="col-2">
+                    <p-avatar [image]="imageHandler(a.imageUrl)" styleClass="mr-2" shape="circle"
+                        size="xlarge"></p-avatar>
+                </span>
+                <span class="col-6 ps-3 text-lg text-800">{{a.name}}</span>
+                <span class="col-2 text-sm text-color-secondary">
+                    {{'(+'+a.price + ('Currency' | translate)+')'}}
+                </span>
+                <span class="col-2">
+                    <p-checkbox [value]="a.id" [(ngModel)]="addonIds"
+                        (ngModelChange)="calculateTotalPrice()"></p-checkbox>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

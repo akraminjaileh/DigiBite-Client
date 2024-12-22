@@ -1,0 +1,44 @@
+<div *ngIf="address else noAddress" class="m-5 flex gap-6 justify-content-center align-items-center">
+    <h1 class="text-2xl font-semibold text-color-secondary">Your Address</h1>
+    <div class="card w-6">
+        <div class="grid align-items-center">
+            <div class="col-6">
+                <iframe [src]="mapURL" width="auto" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="col-4">
+                <div class="text-lg font-semibold text-color-secondary my-2">
+                    <p>{{address.buildingName}}</p>
+                    <p-chip [label]="address.addressLabel || ''" icon="pi pi-map-marker"></p-chip>
+                </div>
+                <p class="text-xs font-base text-color-secondary">
+                    {{address.street}}
+                </p>
+                <div class="text-xs font-base text-color-secondary">
+                    <p>
+                        {{'Floor' + ': '+ address.floor}}
+                    </p>
+                    <p>
+                        {{'Apartment Number' +': '+ address.apartmentNumber}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-2 flex justify-content-start">
+                <p-button (onClick)="openDialog()" label="Change" icon="pi pi-plus-circle"
+                    styleClass="p-button-sm p-button-text"></p-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noAddress>
+    <div class="flex justify-content-center align-items-center">
+        <div class="card p-5 w-5 justify-content-center align-items-center gap-4">
+            <div class="text-warning text-lg font-medium">
+                <p>You don't have any saved addresses.</p>
+                <p>Please add one to proceed with checkout.</p>
+            </div>
+            <p-button label="Add Your Address" icon="pi pi-plus"
+                styleClass="p-button-outlined p-button-success"></p-button>
+        </div>
+    </div>
+</ng-template>
