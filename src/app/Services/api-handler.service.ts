@@ -33,7 +33,10 @@ export class ApiHandlerService {
     return this.http.put<ApiResponse>(`${url}/${id}`, body);
 
   }
-  delete(url: string, id: number) {
-    return this.http.delete<ApiResponse>(`${url}/${id}`);
+  delete(url: string, id: number | undefined) {
+    if (id)
+      return this.http.delete<ApiResponse>(`${url}/${id}`);
+    else
+      return this.http.delete<ApiResponse>(url);
   }
 }

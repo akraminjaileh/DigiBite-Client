@@ -28,5 +28,8 @@ export const apiUrls = {
         updateQuantity: `${BASE_URL}/api/CustomerAction/UpdateQuantity`,
         address: `${BASE_URL}/api/CustomerAction/Address`,
         defaultAddress: `${BASE_URL}/api/CustomerAction/DefaultAddress`,
+        voucher: `${BASE_URL}/api/CustomerAction/Voucher`,
+        orderCheckout: `${BASE_URL}/api/CustomerAction/Order/Checkout`,
+        order: `${BASE_URL}/api/CustomerAction/Order`,
     },
 };

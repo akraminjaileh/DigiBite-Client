@@ -29,6 +29,8 @@ import { DefaultAddressComponent } from './component/address/default-address/def
 import { ListAddressesComponent } from './component/address/list-addresses/list-addresses.component';
 import { CartSidebarComponent } from './component/cart/cart-sidebar/cart-sidebar.component';
 import { CartCheckoutComponent } from './component/cart/cart-checkout/cart-checkout.component';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { JdCurrencyPipe } from './pipe/jd-currency.pipe';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -51,7 +53,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DefaultAddressComponent,
     ListAddressesComponent,
     CartSidebarComponent,
-    CartCheckoutComponent
+    CartCheckoutComponent,
+    ThankYouComponent,
+    JdCurrencyPipe
 
   ],
   imports: [

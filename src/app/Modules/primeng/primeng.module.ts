@@ -13,6 +13,8 @@ import { RippleModule } from 'primeng/ripple';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SidebarModule } from 'primeng/sidebar';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DividerModule } from 'primeng/divider';
 
 const primeng = [
   DataViewModule,
@@ -28,7 +30,9 @@ const primeng = [
   RippleModule,
   InputTextareaModule,
   SidebarModule,
-  RadioButtonModule
+  RadioButtonModule,
+  OverlayPanelModule,
+  DividerModule
 
 
 ]

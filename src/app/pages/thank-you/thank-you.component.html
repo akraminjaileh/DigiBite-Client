@@ -1,0 +1,52 @@
+<div class="thank-you-container">
+    <h1>Thank You for Your Order!</h1>
+    <p>Your order has been successfully placed.</p>
+
+    <!-- Order Summary -->
+    <div *ngIf="orderDetails">
+        <h3>Order Summary</h3>
+        <p><strong>Order Number:</strong> {{ orderDetails.id }}</p>
+        <p><strong>Status:</strong> {{ orderDetails.status }}</p>
+        <p><strong>Payment Method:</strong> {{ orderDetails.paymentMethod }}</p>
+        <p><strong>Order Date:</strong> {{ orderDetails.creationDateTime | date: 'medium' }}</p>
+    </div>
+
+    <!-- Cart Details -->
+    <div *ngIf="orderDetails?.cart">
+        <h3>Cart Details</h3>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Special Notes</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderDetails?.cart?.cartItems">
+                    <td>
+                        {{ item.itemInCart.name }}
+                        <img *ngIf="item.itemInCart.primaryImageUrl"
+                            [src]="imageHandler(item.itemInCart.primaryImageUrl.imageUrl)"
+                            (error)="onImageError($event)" [alt]="item.itemInCart.primaryImageUrl.altText"
+                            class="item-image" />
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.specialNotes || 'None' }}</td>
+                    <td>{{ item.itemPrice | jdCurrency }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Cart Summary</h4>
+        <p><strong>Subtotal:</strong> {{ orderDetails?.cart?.subtotal | currency:'JOD':'symbol' }}</p>
+        <p><strong>Delivery Fee:</strong> {{ orderDetails?.cart?.deliveryFee | jdCurrency }}</p>
+        <p><strong>Service Fee:</strong> {{ orderDetails?.cart?.serviceFee | currency }}</p>
+        <p><strong>Total:</strong> {{ orderDetails?.cart?.totalAmount | currency }}</p>
+    </div>
+
+    <!-- Print Invoice Button -->
+    <button pButton type="button" label="Print Invoice" icon="pi pi-print" class="p-button-primary"
+        (click)="printInvoice()"></button>
+</div>

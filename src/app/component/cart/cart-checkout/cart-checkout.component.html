@@ -1,7 +1,7 @@
 <div class="container">
     <div class="grid justify-content-center">
 
-        <!--Item Name-->
+        <!--Items Name-->
         <div class="m-2 p-3 card  col">
             <div *ngFor="let ci of cart?.cartItems let i=index">
                 <div class="flex justify-content-between align-items-center mx-2 font-semibold text-color-secondary">
@@ -21,8 +21,85 @@
 
         </div>
 
-        <!--footer-->
+        <!--Payment Summary-->
         <div class="m-2 p-3 card  col">
+            <!--voucher-->
+            <div *ngIf="voucher" class="flex gap-3 mb-2">
+                <div *ngFor="let v of voucher" class="card w-3 align-items-center">
+                    <i (click)="op.toggle($event)"
+                        class="pi pi-info-circle text-primary absolute top-0 right-0 m-1"></i>
+                    <span class="text-xl text-warning font-semibold mt-2">
+                        {{v.code}}
+                        <p-divider></p-divider>
+                    </span>
+                    <span>
+                        {{v.discountAmount +(v.isPercentage?'% OFF':'JD OFF')}}
+                    </span>
+                    <span>
+                        Above {{v.minimumOrderAmount}} JD
+                    </span>
+                    <span class="my-2">
+                        <p-button [disabled]="isDisabled && (v.id != cart?.voucherId)"
+                            (onClick)="isDisabled?removeVoucher(): applyVoucher(v.id)" [label]="label"
+                            [styleClass]=" isDisabled?'p-button-outlined p-button-danger':'p-button-outlined'"></p-button>
+                    </span>
+                    <!--Voucher info-->
+                    <p-overlayPanel #op>
+                        <ng-template pTemplate="content">
+                            <div class="text-sm font-semibold">
+                                <p>
+                                    Code:
+                                    <span class="font-normal text-secondary">{{v.code}}</span>
+                                </p>
+                                <p>
+                                    Discount Amount:
+                                    <span class="font-normal text-secondary">{{v.discountAmount +
+                                        (v.isPercentage?'%':'JD')}}</span>
+                                </p>
+                                <p>
+                                    Minimum Order Amount:
+                                    <span class="font-normal text-secondary">{{v.minimumOrderAmount}}</span>
+                                </p>
+                                <p>
+                                    You can use it
+                                    <span class="text-primary">{{' '+v.usagesLeft+' '}}</span>
+                                    times.
+                                </p>
+                                <p>
+                                    Start Date:
+                                    <span class="font-normal text-secondary">
+                                        {{ v.scheduleStartDate | date:'MMM d, h:mm a' }}
+                                    </span>
+                                </p>
+                                <p>
+                                    Exp on:
+                                    <span class="font-normal text-secondary">{{ v.expirationDate | date:'MMM d, h:mm a'
+                                        }}</span>
+                                </p>
+                            </div>
+                        </ng-template>
+                    </p-overlayPanel>
+                </div>
+            </div>
+            <!--Payment Method-->
+            <div class="my-3">
+                <p class="text-base font-bold">Payment Method</p>
+                <div *ngFor="let p of paymentMethod" class="card mb-1 flex flex-row justify-content-between w-6 p-3"
+                    [ngClass]="{'border-primary': p.value == paymentValue}">
+                    <span>
+                        <i [class]="p.icon"></i>
+                        {{p.name}}
+                    </span>
+
+                    <p-radioButton [value]="p.value" [(ngModel)]="paymentValue"></p-radioButton>
+                </div>
+            </div>
+            <!--Order Note-->
+            <span class="p-float-label">
+                <textarea [(ngModel)]="note" id="order-note" rows="5" cols="30" pInputTextarea></textarea>
+                <label for="order-note">Order Note</label>
+            </span>
+
             <h2 class="text-base font-bold">
                 Payment Summary
             </h2>
