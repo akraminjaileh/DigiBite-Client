@@ -15,6 +15,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DividerModule } from 'primeng/divider';
+import { NgxPrintModule } from 'ngx-print';
+import { TableModule } from 'primeng/table';
 
 const primeng = [
   DataViewModule,
@@ -32,7 +34,9 @@ const primeng = [
   SidebarModule,
   RadioButtonModule,
   OverlayPanelModule,
-  DividerModule
+  DividerModule,
+  NgxPrintModule,
+  TableModule
 
 
 ]

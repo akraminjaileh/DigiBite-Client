@@ -14,8 +14,12 @@ export class CartService {
 
   getCart(): Observable<CartDTO> {
     return this.api
-      .get(apiUrls.CustomerAction.getCart)
-      .pipe(map(x => x.data));
+      .get(apiUrls.CustomerAction.getCart, undefined)
+      .pipe(
+        map(x => {
+          if (x) return x.data
+        })
+      );
   }
 
   addToCart(input: AddToCartDTO): Observable<any> {

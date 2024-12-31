@@ -21,13 +21,21 @@ export class AddressService {
   getAddressById(id: number): Observable<AddressDTO> {
     return this.api
       .get(`${apiUrls.CustomerAction.address}/${id}`, undefined)
-      .pipe(map(x => x.data));
+      .pipe(
+        map(x => {
+          if (x) return x.data
+        })
+      );
   }
 
   getDefaultAddress(): Observable<AddressDTO> {
     return this.api
       .get(apiUrls.CustomerAction.defaultAddress, undefined)
-      .pipe(map(x => x.data));
+      .pipe(
+        map(x => {
+          if (x) return x.data
+        })
+      );
   }
 
 }

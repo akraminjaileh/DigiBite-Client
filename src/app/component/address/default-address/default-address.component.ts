@@ -5,7 +5,7 @@ import { AddressDTO } from 'src/app/dtos/addressDTO';
 import { AddressService } from 'src/app/Services/address.service';
 import { ListAddressesComponent } from '../list-addresses/list-addresses.component';
 import { BehaviorService } from 'src/app/Services/behavior.service';
-import { subscribeOn, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-default-address',

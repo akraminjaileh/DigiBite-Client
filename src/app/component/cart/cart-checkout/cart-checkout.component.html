@@ -1,31 +1,40 @@
 <div class="container">
+    <h1 class="text-2xl font-bold text-center bg-body-secondary p-3">Check Your Order</h1>
     <div class="grid justify-content-center">
 
-        <!--Items Name-->
-        <div class="m-2 p-3 card  col">
-            <div *ngFor="let ci of cart?.cartItems let i=index">
-                <div class="flex justify-content-between align-items-center mx-2 font-semibold text-color-secondary">
-                    <span class="text-base font-bold">
-                        {{ci.itemInCart.name}}
-                        <span class="text-xs">
-                            {{' x ' + ci.quantity}}
-                        </span>
-                    </span>
-
-                    <span class="text-sm text-primary">
-                        {{('Currency' | translate) + totalPrice(ci)}}
-                    </span>
-                </div>
-                <hr *ngIf="cart?.cartItems?.length != i+1">
-            </div>
-
+        <!--Item table-->
+        <div class="m-2 p-3  col-7">
+            <p-table [value]="cart?.cartItems || []">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>QTY</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{product.itemInCart.name}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>
+                            <img width="100" class="shadow-4"
+                                [src]="imageHandler(product.itemInCart.primaryImageUrl?.imageUrl)"
+                                (error)="onImageError($event)"
+                                [alt]="product.itemInCart.primaryImageUrl?.altText || product.itemInCart.primaryImageUrl?.fileName" />
+                        </td>
+                        <td>{{product.itemPrice | jdCurrency}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
 
+
         <!--Payment Summary-->
-        <div class="m-2 p-3 card  col">
+        <div class="m-2 p-3   col">
             <!--voucher-->
             <div *ngIf="voucher" class="flex gap-3 mb-2">
-                <div *ngFor="let v of voucher" class="card w-3 align-items-center">
+                <div *ngFor="let v of voucher" class="card w-4 align-items-center">
                     <i (click)="op.toggle($event)"
                         class="pi pi-info-circle text-primary absolute top-0 right-0 m-1"></i>
                     <span class="text-xl text-warning font-semibold mt-2">
@@ -84,7 +93,7 @@
             <!--Payment Method-->
             <div class="my-3">
                 <p class="text-base font-bold">Payment Method</p>
-                <div *ngFor="let p of paymentMethod" class="card mb-1 flex flex-row justify-content-between w-6 p-3"
+                <div *ngFor="let p of paymentMethod" class="card mb-1 flex flex-row justify-content-between  p-3"
                     [ngClass]="{'border-primary': p.value == paymentValue}">
                     <span>
                         <i [class]="p.icon"></i>
@@ -96,7 +105,7 @@
             </div>
             <!--Order Note-->
             <span class="p-float-label">
-                <textarea [(ngModel)]="note" id="order-note" rows="5" cols="30" pInputTextarea></textarea>
+                <textarea [(ngModel)]="note" id="order-note" rows="5" cols="50" pInputTextarea></textarea>
                 <label for="order-note">Order Note</label>
             </span>
 
@@ -107,48 +116,48 @@
             <div class="flex justify-content-between  flex-wrap">
                 <span class="text-color-secondary text-xs">Subtotal</span>
                 <span class="text-xs text-primary">
-                    {{cart?.subtotal + ('Currency' | translate)}}
+                    {{cart?.subtotal | jdCurrency}}
                 </span>
             </div>
             <!--Service Fee-->
             <div *ngIf="cart?.serviceFee" class="flex justify-content-between  flex-wrap">
                 <span class="text-color-secondary text-xs">Service Fee</span>
                 <span class="text-xs text-primary">
-                    {{cart?.serviceFee + ('Currency' | translate)}}
+                    {{cart?.serviceFee | jdCurrency}}
                 </span>
             </div>
             <!--Delivery Fee-->
             <div *ngIf="cart?.deliveryFee" class="flex justify-content-between  flex-wrap">
                 <span class="text-color-secondary text-xs">Delivery Fee</span>
                 <span class="text-xs text-primary">
-                    {{cart?.deliveryFee + ('Currency' | translate)}}
+                    {{cart?.deliveryFee | jdCurrency}}
                 </span>
             </div>
             <!--Discount-->
             <div *ngIf="cart?.discount" class="flex justify-content-between  flex-wrap">
                 <span class="text-color-secondary text-xs">Discount</span>
                 <span class="text-xs text-primary">
-                    {{cart?.discount + ('Currency' | translate)}}
+                    {{cart?.discount | jdCurrency}}
                 </span>
             </div>
             <!--Voucher Discount-->
             <div *ngIf="cart?.voucherDiscount" class="flex justify-content-between  flex-wrap">
                 <span class="text-color-secondary text-xs">Voucher Discount</span>
                 <span class="text-xs text-primary">
-                    {{cart?.voucherDiscount + ('Currency' | translate)}}
+                    {{cart?.voucherDiscount | jdCurrency}}
                 </span>
             </div>
             <!--Total Amount-->
             <div class="flex justify-content-between  flex-wrap">
                 <span class="text-xs font-semibold">Total Amount</span>
                 <span class="text-xs text-primary font-semibold">
-                    {{cart?.totalAmount + ('Currency' | translate)}}
+                    {{cart?.totalAmount | jdCurrency}}
                 </span>
             </div>
             <!--Checkout-->
             <div>
-                <button pButton pRipple [label]="('Checkout' | translate) +'&emsp;&emsp;&emsp;'
-             +(cart?.totalAmount) + ('Currency' | translate)" class="p-button w-100 mt-5"></button>
+                <button (click)="checkout()" pButton pRipple [label]="('Checkout' | translate) +'&emsp;&emsp;&emsp;'
+                    +(cart?.totalAmount | jdCurrency)" class="p-button w-100 mt-5"></button>
             </div>
         </div>
 

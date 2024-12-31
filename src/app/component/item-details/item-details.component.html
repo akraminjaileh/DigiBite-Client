@@ -23,7 +23,7 @@
         <div class="mt-5 sticky left-0 top90 flex flex-row flex-wrap gap-3 align-items-center">
             <div class="flex-auto">
                 <button (click)="addToCart()" pButton pRipple [label]="('Add To Cart' | translate) +'&emsp;&emsp;&emsp;'+ 
-            totalPrice + ('Currency' | translate)" class="p-button"></button>
+            (totalPrice | jdCurrency)" class="p-button"></button>
             </div>
             <div class="flex-auto">
                 <p-inputNumber [(ngModel)]="qty" mode="decimal" [showButtons]="true" [min]="1" [max]="100">
@@ -38,8 +38,7 @@
             <span>{{item.name}}</span>
             <div class="flex align-items-center">
                 <p-chip class="me-5" [label]="item.categoryName || 'UnCategories'" icon="pi pi-tag"></p-chip>
-                <span class="text-2xl font-semibold text-color-secondary">{{item.price + ('Currency' |
-                    translate)}}</span>
+                <span class="text-2xl font-semibold text-color-secondary">{{item.price | jdCurrency}}</span>
             </div>
         </h1>
         <!--Item Description-->
@@ -69,7 +68,7 @@
                 </span>
                 <span class="col-6 ps-3 text-lg text-800">{{a.name}}</span>
                 <span class="col-2 text-sm text-color-secondary">
-                    {{'(+'+a.price + ('Currency' | translate)+')'}}
+                    {{'(+'+(a.price | jdCurrency)+')'}}
                 </span>
                 <span class="col-2">
                     <p-checkbox [value]="a.id" [(ngModel)]="addonIds"

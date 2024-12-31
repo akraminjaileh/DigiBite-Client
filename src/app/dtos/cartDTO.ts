@@ -10,5 +10,5 @@ export interface CartDTO {
     serviceFee: number | null;
     totalAmount: number | null;
     voucherId: number | null;
-    cartItems: CartItemDTO[];
+    cartItems: CartItemDTO[] | null;
 }

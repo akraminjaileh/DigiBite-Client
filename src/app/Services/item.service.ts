@@ -5,7 +5,6 @@ import { map, Observable } from 'rxjs';
 import { apiUrls } from '../config/api-urls';
 import { PaginatedResult } from '../config/paginatedResult';
 import { ItemDetailsDTO } from '../dtos/itemDetailsDTO';
-import { AddToCartDTO } from '../dtos/addToCartDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,11 @@ export class ItemService {
   getItem(id: number | undefined): Observable<ItemDetailsDTO> {
     return this.api
       .get(`${apiUrls.item.item}/${id}`, undefined)
-      .pipe(map(x => x.data));
+      .pipe(
+        map(x => {
+          if (x) return x.data
+        })
+      );
   }
 
 }

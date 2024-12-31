@@ -31,6 +31,7 @@ import { CartSidebarComponent } from './component/cart/cart-sidebar/cart-sidebar
 import { CartCheckoutComponent } from './component/cart/cart-checkout/cart-checkout.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { JdCurrencyPipe } from './pipe/jd-currency.pipe';
+import { EmptyCartComponent } from './component/empty-cart/empty-cart.component';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -55,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CartSidebarComponent,
     CartCheckoutComponent,
     ThankYouComponent,
-    JdCurrencyPipe
+    JdCurrencyPipe,
+    EmptyCartComponent,
 
   ],
   imports: [

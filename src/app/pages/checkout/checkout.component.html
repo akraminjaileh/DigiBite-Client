@@ -1,3 +1,17 @@
-<app-default-address></app-default-address>
+<ng-container *ngIf="! isCartEmpty else emptyCart">
+    <h1 class="text-4xl nm-1 font-bold text-center bg-body-secondary p-5">Checkout</h1>
 
-<app-cart-checkout></app-cart-checkout>
+    <app-default-address></app-default-address>
+
+    <app-cart-checkout (isCartEmpty)="cartEvent($event)"></app-cart-checkout>
+
+</ng-container>
+
+
+<ng-template #emptyCart>
+    <app-empty-cart>
+        <span>
+            <button routerLink="/" pButton pRipple label="Return to Home" class="p-button mt-5 uppercase"></button>
+        </span>
+    </app-empty-cart>
+</ng-template>

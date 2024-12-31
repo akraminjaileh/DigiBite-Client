@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ImageHandler } from 'src/app/config/imageHandler';
 import { OrderDetailsDTO } from 'src/app/dtos/orderDetailsDTO';
+import { BehaviorService } from 'src/app/Services/behavior.service';
 import { CheckoutService } from 'src/app/Services/checkout.service';
 
 @Component({
@@ -10,24 +13,22 @@ import { CheckoutService } from 'src/app/Services/checkout.service';
 })
 export class ThankYouComponent {
 
+  private subscription: Subscription = new Subscription;
+
   orderDetails: OrderDetailsDTO | undefined;
 
-  constructor(private service: CheckoutService) { }
+  constructor(
+    private service: CheckoutService,
+    private behavior: BehaviorService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.service.thankYou(2).subscribe(res => this.orderDetails = res);
-  }
-
-  printInvoice(): void {
-    const printContent = document.querySelector('.thank-you-container');
-    if (printContent) {
-      const printWindow = window.open('', '', 'width=800,height=600');
-      printWindow?.document.write('<html><head><title>Invoice</title></head><body>');
-      printWindow?.document.write(printContent.innerHTML);
-      printWindow?.document.write('</body></html>');
-      printWindow?.document.close();
-      printWindow?.print();
-    }
+    this.subscription.add(
+      this.behavior.getOrderId().subscribe(id => {
+        if (id)
+          this.service.thankYou(id).subscribe(res => this.orderDetails = res);
+        else this.router.navigate(['./error'])
+      }));
   }
 
 
@@ -40,5 +41,8 @@ export class ThankYouComponent {
     target.src = ImageHandler.noImage;
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 }

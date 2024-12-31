@@ -31,7 +31,7 @@ export class CheckoutService {
       .pipe(map(x => x.data));
   }
 
-  checkout(input: CheckoutDTO): Observable<any> {
+  checkout(input: CheckoutDTO): Observable<number> {
     return this.api
       .post(apiUrls.CustomerAction.orderCheckout, input)
       .pipe(map(x => x.data));
@@ -40,7 +40,11 @@ export class CheckoutService {
   thankYou(orderId: number): Observable<OrderDetailsDTO> {
     return this.api
       .get(`${apiUrls.CustomerAction.order}/${orderId}`)
-      .pipe(map(x => x.data));
+      .pipe(
+        map(x => {
+          if (x) return x.data
+        })
+      );
   }
 
 }

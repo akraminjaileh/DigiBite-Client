@@ -9,11 +9,13 @@ export class BehaviorService {
   private categoryId: BehaviorSubject<number | null>;
   private sidebarVisible: BehaviorSubject<boolean>;
   private addressId: BehaviorSubject<number | undefined>;
+  private orderId: BehaviorSubject<number | undefined>;
 
   constructor() {
     this.categoryId = new BehaviorSubject<number | null>(null);
     this.sidebarVisible = new BehaviorSubject<boolean>(false);
     this.addressId = new BehaviorSubject<number | undefined>(undefined);
+    this.orderId = new BehaviorSubject<number | undefined>(undefined);
   }
 
   setCategoryId(input: number) {
@@ -38,6 +40,14 @@ export class BehaviorService {
 
   getAddressId(): Observable<number | undefined> {
     return this.addressId.asObservable();
+  }
+
+  setOrderId(input: number) {
+    return this.orderId.next(input)
+  }
+
+  getOrderId(): Observable<number | undefined> {
+    return this.orderId.asObservable();
   }
 
 }

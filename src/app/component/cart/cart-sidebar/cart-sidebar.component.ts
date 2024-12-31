@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ImageHandler } from 'src/app/config/imageHandler';
 import { CartDTO } from 'src/app/dtos/cartDTO';
 import { BehaviorService } from 'src/app/Services/behavior.service';
@@ -17,7 +18,7 @@ export class CartSidebarComponent {
   constructor(
     private behavior: BehaviorService,
     private service: CartService,
-  ) {
+    private router: Router) {
     this.behavior.getSidebarVisible()
       .subscribe(x => this.sidebarVisible = x);
   }
@@ -37,6 +38,10 @@ export class CartSidebarComponent {
     });
   }
 
+  checkoutClick() {
+    this.router.navigate(['/checkout']);
+    this.ngOnDestroy();
+  }
 
   ngOnDestroy(): void {
     this.behavior.setSidebarVisible(false);

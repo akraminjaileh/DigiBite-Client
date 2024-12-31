@@ -1,5 +1,5 @@
 export interface CheckoutDTO {
-    customerNotes: string;
+    customerNotes: string | undefined;
     paymentMethod: string;
-    userAddressId: number;
+    userAddressId: number | undefined;
 }
