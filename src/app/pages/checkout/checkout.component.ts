@@ -12,6 +12,5 @@ export class CheckoutComponent {
 
   cartEvent(event: boolean) {
     this.isCartEmpty = event;
-    console.log(this.isCartEmpty, event)
   }
 }

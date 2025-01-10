@@ -7,6 +7,7 @@ import { LoginDTO } from '../dtos/loginDTO';
 import { ForgetPassDTO } from '../dtos/forgetPassDTO';
 import { IResetPassDTO } from '../dtos/iResetPassDTO';
 import { ConfirmEmailDTO } from '../dtos/confirmEmailDTO';
+import { TokenDTO } from '../dtos/tokenDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class AuthService {
       .pipe(map(x => x.data));
   }
 
-  login(input: LoginDTO): Observable<string> {
+  login(input: LoginDTO): Observable<TokenDTO> {
     return this.api
       .post(apiUrls.account.login, input)
       .pipe(map(x => x.data));

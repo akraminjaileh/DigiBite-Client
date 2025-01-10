@@ -24,7 +24,7 @@ export class SignupComponent {
       firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]{2,20}$')]],
       lastName: [undefined, Validators.pattern('^[A-Za-z]{1,20}$')],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^07[0-9]{8}$')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^07[7-9]{1}[0-9]{7}$')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$')]]
     })
 

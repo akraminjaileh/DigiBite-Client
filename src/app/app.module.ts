@@ -32,6 +32,10 @@ import { CartCheckoutComponent } from './component/cart/cart-checkout/cart-check
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { JdCurrencyPipe } from './pipe/jd-currency.pipe';
 import { EmptyCartComponent } from './component/empty-cart/empty-cart.component';
+import { ProfileComponent } from './component/profile/profile.component';
+import { ProfileOrdersComponent } from './component/profile-orders/profile-orders.component';
+import { ProfileAddressesComponent } from './component/profile-addresses/profile-addresses.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -58,6 +62,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ThankYouComponent,
     JdCurrencyPipe,
     EmptyCartComponent,
+    ProfileComponent,
+    ProfileOrdersComponent,
+    ProfileAddressesComponent,
 
   ],
   imports: [
@@ -67,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NgxSpinnerModule.forRoot({ type: 'fire' }),
     ToastrModule.forRoot(),
     HttpClientModule,
+    ReactiveFormsModule,
     MaterialModule,
     PrimengModule,
     TranslateModule.forRoot({

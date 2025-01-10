@@ -1,34 +1,24 @@
-<mat-toolbar color="primary" class="header-toolbar mb-3">
-    <!-- Logo on the Left -->
-    <div class="toolbar-logo">
-        <a routerLink="/">
-            <img src="../../../../assets/Images/DigiBiteLogo.png" alt="DigiBiteLogo" width="150px" height="auto"></a>
-    </div>
+<p-toolbar styleClass="bg-primary mb-3">
+    <!-- Logo -->
+    <a routerLink="/">
+        <img src="../../../../assets/Images/DigiBiteLogo.png" alt="DigiBiteLogo" width="150px" height="auto"></a>
+    <!-- Actions-->
+    <div class="p-toolbar-group-end">
+        <p-button (click)="changLang()" [label]="lang" icon="pi pi-globe"
+            styleClass="p-button-outlined mr-2 text-white"></p-button>
 
-    <!-- Menu in the Center -->
-    <div class="toolbar-menu">
-        <mat-list role="list" class="menu-list">
-            <a class="text-decoration-none text-white" routerLink="/">About Us</a>
-            <a class="text-decoration-none text-white" routerLink="/">Blog</a>
-            <a class="text-decoration-none text-white" routerLink="/">Shop</a>
-        </mat-list>
-    </div>
+        <p-button *ngIf="isLogged" (click)="openCart()" label="Cart" icon="pi pi-shopping-cart"
+            styleClass="p-button-text mr-2 text-white"></p-button>
 
-    <!-- Actions on the Right -->
-    <div class="toolbar-actions">
-        <button (click)="changLang()" mat-icon-button>
-            <small>{{lang}}</small>
-            <mat-icon>language</mat-icon>
-        </button>
-        <button mat-icon-button (click)="openCart()">
-            <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <button mat-icon-button>
-            <mat-icon>account_circle</mat-icon>
-        </button>
+        <p-button *ngIf="!isLogged" routerLink="/auth" label="Login/Register" icon="pi pi-sign-in"
+            styleClass="p-button-outlined mr-2 text-white"></p-button>
+
+        <p-button *ngIf="isLogged" (click)="menu.toggle($event)" [label]="customerName?'Hi '+(customerName):''"
+            icon="pi pi-user" styleClass="p-button-text mr-5 text-white"></p-button>
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
 
     </div>
-</mat-toolbar>
+</p-toolbar>
 
 <!--Cart Sidebar-->
 <app-cart-sidebar *ngIf="SidebarVisible"></app-cart-sidebar>

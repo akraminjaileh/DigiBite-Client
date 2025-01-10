@@ -29,10 +29,15 @@ export class ApiHandlerService {
   post<T>(url: string, body: T): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(url, body);
   }
+
   put(url: string, id: number, body: any) {
     return this.http.put<ApiResponse>(`${url}/${id}`, body);
-
   }
+
+  patch(url: string, body: any) {
+    return this.http.patch<ApiResponse>(url, body);
+  }
+
   delete(url: string, id: number | undefined) {
     if (id)
       return this.http.delete<ApiResponse>(`${url}/${id}`);

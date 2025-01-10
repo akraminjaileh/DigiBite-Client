@@ -17,6 +17,14 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DividerModule } from 'primeng/divider';
 import { NgxPrintModule } from 'ngx-print';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
+import { MenuModule } from 'primeng/menu';
+import { FieldsetModule } from 'primeng/fieldset';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputMaskModule } from 'primeng/inputmask';
+import { BadgeModule } from 'primeng/badge';
 
 const primeng = [
   DataViewModule,
@@ -36,7 +44,15 @@ const primeng = [
   OverlayPanelModule,
   DividerModule,
   NgxPrintModule,
-  TableModule
+  TableModule,
+  ToolbarModule,
+  MenuModule,
+  FieldsetModule,
+  InputTextModule,
+  CalendarModule,
+  SelectButtonModule,
+  InputMaskModule,
+  BadgeModule
 
 
 ]

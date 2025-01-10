@@ -89,7 +89,6 @@ export class ItemComponent {
 
 
     this.service.getAllItem(params).subscribe((res) => {
-      console.log(res)
       this.items = res.items;
       this.totalRecords = res.totalRecords;
     });

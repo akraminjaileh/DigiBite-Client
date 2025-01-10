@@ -1,0 +1,109 @@
+<app-account>
+    <div class="w-9">
+        <p-fieldset>
+            <!--Header-->
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center text-primary justify-content-between">
+                    <div>
+                        <input type="file" hidden #file (change)="updateProfileImage($event)">
+                        <div *ngIf="user?.profileImgUrl">
+                            <p-avatar (error)="onImageError($event)" [image]="imageHandler(user?.profileImgUrl)"
+                                styleClass="mr-2" size="xlarge" shape="circle">
+                            </p-avatar>
+                            <i *ngIf="canEdit" (click)="file.click()" class="pi pi-pencil"
+                                [style]="{'cursor': 'pointer'}"></i>
+                        </div>
+                        <div *ngIf=" ! user?.profileImgUrl">
+                            <p-avatar [label]="user?.firstName?.charAt(0)?.toUpperCase() || ''" styleClass="mr-2"
+                                size="large" shape="circle"
+                                [style]="{ 'background-color': '#2196F3', color: '#ffffff','font-weight': '600' ,'font-size': '40px', 'cursor': 'pointer'}"></p-avatar>
+                            <i *ngIf="canEdit" (click)="file.click()" class="pi pi-pencil"
+                                [style]="{'cursor': 'pointer'}"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="font-bold text-lg">Account Details</div>
+
+                    <p-button *ngIf="!canEdit else saveButton" (onClick)="edit()" icon="pi pi-user-edit" label="Edit"
+                        styleClass="p-button-outlined"></p-button>
+                </div>
+            </ng-template>
+            <!--save button-->
+            <ng-template #saveButton>
+                <div>
+                    <button pButton [disabled]="profileForm?.invalid" (click)="updateProfile()" class="mx-2"
+                        label="Save" type="submit" styleClass="p-button-outlined"></button>
+                    <p-button class="mx-2" (onClick)="edit()" label="Cancel"
+                        styleClass="p-button-outlined p-button-danger"></p-button>
+                </div>
+            </ng-template>
+
+            <!-- Content -->
+            <form *ngIf="profileForm" [formGroup]="profileForm" class="p-5 p-fluid">
+                <div class="flex justify-content-between ">
+                    <!-- First Name -->
+                    <span class="field">
+                        <label htmlFor="firstName">First Name</label>
+                        <input pInputText id="firstName" type="text" formControlName="firstName" />
+                        <small
+                            *ngIf="profileForm.get('firstName')?.hasError('pattern') && profileForm.get('firstName')?.touched"
+                            class="p-error">
+                            {{'error.NamePattern' |translate}}
+                        </small>
+                        <small
+                            *ngIf="profileForm.get('firstName')?.hasError('required') && profileForm.get('firstName')?.touched"
+                            class="p-error">
+                            {{'error.NameRequired' |translate}}
+                        </small>
+                    </span>
+                    <!-- Last Name -->
+                    <span class="field">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input pInputText id="lastName" type="text" formControlName="lastName" />
+                        <small
+                            *ngIf="profileForm.get('lastName')?.hasError('pattern') && profileForm.get('lastName')?.touched"
+                            class="p-error">
+                            {{'error.NamePattern' |translate}}
+                        </small>
+                    </span>
+                </div>
+                <!-- Email -->
+                <div class="field">
+                    <label htmlFor="email">Email</label>
+                    <input pInputText id="email" type="text" formControlName="email" />
+                </div>
+                <!-- Phone Number -->
+                <div class="field">
+                    <label>Phone Number</label>
+                    <p-inputMask mask="0799999999" placeholder="0799999999" type="text"
+                        formControlName="phoneNumber"></p-inputMask>
+                    <small
+                        *ngIf="profileForm.get('phoneNumber')?.hasError('required') && profileForm.get('phoneNumber')?.touched"
+                        class="p-error">
+                        {{'error.PhoneRequired' |translate}}
+                    </small>
+                    <small
+                        *ngIf="profileForm.get('phoneNumber')?.hasError('pattern') && profileForm.get('phoneNumber')?.touched"
+                        class="p-error">
+                        {{'error.PhonePattern' |translate}}
+                    </small>
+                </div>
+                <div class="flex justify-content-between ">
+                    <!-- Birthday -->
+                    <span class="field">
+                        <label htmlFor="dateOfBirth">Birthday</label>
+                        <p-calendar dateFormat="dd.M yy" id="dateOfBirth" formControlName="dateOfBirth"
+                            [showIcon]="true"></p-calendar>
+                    </span>
+                    <!-- Gender -->
+                    <span class="field">
+                        <label htmlFor="gender">Gender</label>
+                        <p-selectButton id="gender" [options]="genderOptions" formControlName="gender"
+                            optionLabel="name" optionValue="value"></p-selectButton>
+                    </span>
+                </div>
+            </form>
+        </p-fieldset>
+    </div>
+</app-account>

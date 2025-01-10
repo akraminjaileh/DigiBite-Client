@@ -1,1 +1,10 @@
-<p>account works!</p>
+<div class="grid w-100">
+    <!-- Sidebar -->
+    <div class="col-12 md:col-3 p-5">
+        <p-menu class="m-5" [model]="items" aria-label="Account Menu"></p-menu>
+    </div>
+    <!-- Content -->
+    <div class="col-12 md:col-9 p-5">
+        <ng-content></ng-content>
+    </div>
+</div>

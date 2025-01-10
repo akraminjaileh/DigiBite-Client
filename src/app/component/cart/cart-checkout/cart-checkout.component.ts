@@ -101,7 +101,6 @@ export class CartCheckoutComponent {
       paymentMethod: this.paymentValue,
       userAddressId: this.addressId
     };
-    console.log(input)
     this.checkoutService.checkout(input)
       .subscribe(id => {
         this.behavior.setOrderId(id);
