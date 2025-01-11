@@ -25,6 +25,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { BadgeModule } from 'primeng/badge';
+import { ListboxModule } from 'primeng/listbox';
 
 const primeng = [
   DataViewModule,
@@ -52,7 +53,8 @@ const primeng = [
   CalendarModule,
   SelectButtonModule,
   InputMaskModule,
-  BadgeModule
+  BadgeModule,
+  ListboxModule
 
 
 ]

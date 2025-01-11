@@ -37,14 +37,4 @@ export class CheckoutService {
       .pipe(map(x => x.data));
   }
 
-  thankYou(orderId: number): Observable<OrderDetailsDTO> {
-    return this.api
-      .get(`${apiUrls.CustomerAction.order}/${orderId}`)
-      .pipe(
-        map(x => {
-          if (x) return x.data
-        })
-      );
-  }
-
 }

@@ -1,4 +1,62 @@
 <app-account>
-    <p>profile-addresses works!</p>
+    <div class="card p-5">
+        <!--Header-->
+        <div class="text-center">
+            <h2 class="text-primary text-2xl font-bold">Your Addresses</h2>
+            <p-divider></p-divider>
+        </div>
+        <!--Body-->
+        <div class="grid">
+
+            <!--Menu-->
+            <div class="col-4">
+                <p-listbox [options]="addresses" (onChange)="getAddress($event.value.id)"
+                    [(ngModel)]="selectedAddresses" optionLabel="buildingName" [listStyle]="{ 'max-height': '250px' }"
+                    [style]="{ width: '15rem' }">
+                    <ng-template let-address pTemplate="item">
+                        <div class="flex align-items-center gap-2 my-3">
+                            <span><i class="pi pi-angle-right"></i></span>
+                            <div>{{ address.buildingName }}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+            </div>
+
+            <!--Content-->
+            <div class="col-8">
+                <div class="card">
+                    <!--Map-->
+                    <div>
+                        <iframe [src]="mapURL(address?.latitude,address?.longitude)" width="100%" style="border:0;"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <!--Map Body-->
+                    <div class="m-5">
+                        <div class="text-lg font-semibold text-color-secondary my-2">
+                            <p>{{address?.buildingName}}</p>
+                            <p-chip [label]="address?.addressLabel || ''" icon="pi pi-map-marker"></p-chip>
+                        </div>
+                        <p class="text-xs font-base text-color-secondary">
+                            {{address?.street}}
+                        </p>
+                        <div class="text-xs font-base text-color-secondary">
+                            <p>
+                                {{'Floor' + ': '+ address?.floor}}
+                            </p>
+                            <p>
+                                {{'Apartment Number' +': '+ address?.apartmentNumber}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-50 right-0 mx-2">
+                        <p-button label="Info" styleClass="p-button-outlined p-button-info"></p-button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </app-account>

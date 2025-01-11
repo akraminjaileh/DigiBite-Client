@@ -1,0 +1,83 @@
+<!-- Invoice Hidden-->
+<div hidden id="print-section" class="invoice-container">
+
+    <div class="card">
+        <!-- Invoice Header -->
+        <div class="header">
+            <img src="../../../../assets/Images/DigiBiteLogo.png" width="150px" height="auto" alt="Company Logo"
+                class="invoice-logo" />
+            <h1 class="text-primary">Order Invoice</h1>
+            <div class="divider"></div>
+        </div>
+
+        <!-- Order Header -->
+        <div *ngIf="orderDetails" class="order-header">
+            <div class="col">
+                <p><span class="bold">Order Number:</span> {{ orderDetails.id }}</p>
+                <p><span class="bold">Status:</span> {{ orderDetails.status }}</p>
+            </div>
+            <div class="col">
+                <p><span class="bold">Payment Method:</span> {{ orderDetails.paymentMethod }}</p>
+                <p><span class="bold">Order Date:</span> {{ orderDetails.creationDateTime | date: 'medium' }}</p>
+            </div>
+        </div>
+
+        <!-- Cart Items Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Special Notes</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of orderDetails?.cart?.cartItems">
+                    <td>{{ product.itemInCart.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product?.specialNotes || '' }}</td>
+                    <td>{{ product.itemPrice | jdCurrency }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Summary Section -->
+        <h4 class="summary-title">Summary</h4>
+        <div *ngIf="orderDetails?.cart" class="summary">
+            <div class="summary-details">
+                <!-- Subtotal -->
+                <div>
+                    <span class="secondary-text">Subtotal:</span>
+                    <span class="primary-text">{{ orderDetails?.cart?.subtotal | jdCurrency }}</span>
+                </div>
+                <!-- Service Fee -->
+                <div *ngIf="orderDetails?.cart?.serviceFee">
+                    <span class="secondary-text">Service Fee:</span>
+                    <span class="primary-text">{{ orderDetails?.cart?.serviceFee | jdCurrency }}</span>
+                </div>
+                <!-- Delivery Fee -->
+                <div *ngIf="orderDetails?.cart?.deliveryFee">
+                    <span class="secondary-text">Delivery Fee:</span>
+                    <span class="primary-text">{{ orderDetails?.cart?.deliveryFee | jdCurrency }}</span>
+                </div>
+                <!-- Discount -->
+                <div *ngIf="orderDetails?.cart?.discount">
+                    <span class="secondary-text">Discount:</span>
+                    <span class="primary-text">{{ orderDetails?.cart?.discount | jdCurrency }}</span>
+                </div>
+                <!-- Voucher Discount -->
+                <div *ngIf="orderDetails?.cart?.voucherDiscount">
+                    <span class="secondary-text">Voucher Discount:</span>
+                    <span class="primary-text">{{ orderDetails?.cart?.voucherDiscount | jdCurrency }}</span>
+                </div>
+                <!-- Total Amount -->
+                <div>
+                    <span class="bold">Total Amount:</span>
+                    <span class="primary-text bold">{{ orderDetails?.cart?.totalAmount | jdCurrency }}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

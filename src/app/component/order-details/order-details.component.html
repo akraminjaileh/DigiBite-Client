@@ -1,0 +1,111 @@
+<!--order summary -->
+<div class="card p-5">
+
+    <div class="text-center">
+        <ng-content #header></ng-content>
+    </div>
+
+    <!-- Order Header -->
+    <div *ngIf="orderDetails" class="my-5 grid text-lg">
+        <div class="col-6">
+            <p><span class="font-medium">Order Number:</span> {{ orderDetails.id }}</p>
+            <p><span class="font-medium">Status:</span> {{ orderDetails.status }}</p>
+        </div>
+        <div class="col-6">
+            <p> <span class="font-medium">Payment Method:</span> {{
+                orderDetails.paymentMethod }}</p>
+            <p><span class="font-medium">Order Date:</span> {{ orderDetails.creationDateTime | date: 'medium' }}</p>
+        </div>
+    </div>
+
+    <!--Cart Item-->
+    <p-table [value]="orderDetails?.cart?.cartItems || []" [tableStyle]="{'width': '100%'}">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Special Notes</th>
+                <th>Price</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.itemInCart.name}}</td>
+                <td><img [src]="imageHandler(product.itemInCart?.primaryImageUrl?.imageUrl)"
+                        (error)="onImageError($event)" [alt]="product.itemInCart?.primaryImageUrl?.altText" width="100"
+                        class="shadow-4" /></td>
+                <td>{{product.quantity}}</td>
+                <td>{{product?.specialNotes || ''}}</td>
+                <td>{{ product.itemPrice | jdCurrency }}</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+    <!-- Summary -->
+    <h4 class="text-primary font-bold text-xl my-5">Summary</h4>
+    <div *ngIf="orderDetails?.cart" class="grid">
+
+        <div class="text-sm col-6">
+            <!--Subtotal-->
+            <div>
+                <span class="text-color-secondary">Subtotal:</span>
+                <span class="text-primary mx-1">
+                    {{orderDetails?.cart?.subtotal | jdCurrency}}
+                </span>
+            </div>
+            <!--Service Fee-->
+            <div *ngIf="orderDetails?.cart?.serviceFee">
+                <span class="text-color-secondary">Service Fee:</span>
+                <span class="text-primary mx-1">
+                    {{orderDetails?.cart?.serviceFee | jdCurrency}}
+                </span>
+            </div>
+            <!--Delivery Fee-->
+            <div *ngIf="orderDetails?.cart?.deliveryFee">
+                <span class="text-color-secondary">Delivery Fee:</span>
+                <span class=" text-primary mx-1">
+                    {{orderDetails?.cart?.deliveryFee | jdCurrency}}
+                </span>
+            </div>
+            <!--Discount-->
+            <div *ngIf="orderDetails?.cart?.discount">
+                <span class="text-color-secondary ">Discount:</span>
+                <span class=" text-primary mx-1">
+                    {{orderDetails?.cart?.discount | jdCurrency}}
+                </span>
+            </div>
+            <!--Voucher Discount-->
+            <div *ngIf="orderDetails?.cart?.voucherDiscount">
+                <span class="text-color-secondary ">Voucher Discount:</span>
+                <span class=" text-primary mx-1">
+                    {{orderDetails?.cart?.voucherDiscount | jdCurrency}}
+                </span>
+            </div>
+            <!--Total Amount-->
+            <div>
+                <span class=" font-semibold">Total Amount:</span>
+                <span class=" text-primary font-semibold mx-1">
+                    {{orderDetails?.cart?.totalAmount | jdCurrency}}
+                </span>
+            </div>
+        </div>
+
+        <!-- Print Invoice Button -->
+        <div class="col-6 align-items-end flex justify-content-center">
+            <div>
+                <button [printTitle]="'DigiBite Invoice #' + orderDetails?.id" pButton printSectionId="print-section"
+                    ngxPrint [useExistingCss]="true" type="button" label="Print Invoice" icon="pi pi-print"
+                    class="p-button-primary"></button>
+                <!--Home Btn-->
+                <button *ngIf="homeBtn" type="button" routerLink="/" pButton pRipple label="Return to Home"
+                    icon="pi pi-home" class="p-button-outlined p-button-info uppercase mx-3"></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<app-invoice [orderDetails]="orderDetails"></app-invoice>

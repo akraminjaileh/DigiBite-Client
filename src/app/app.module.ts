@@ -36,6 +36,8 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { ProfileOrdersComponent } from './component/profile-orders/profile-orders.component';
 import { ProfileAddressesComponent } from './component/profile-addresses/profile-addresses.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InvoiceComponent } from './component/invoice/invoice.component';
+import { OrderDetailsComponent } from './component/order-details/order-details.component';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -65,6 +67,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ProfileComponent,
     ProfileOrdersComponent,
     ProfileAddressesComponent,
+    InvoiceComponent,
+    OrderDetailsComponent,
 
   ],
   imports: [
