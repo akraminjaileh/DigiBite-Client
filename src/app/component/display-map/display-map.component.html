@@ -1,0 +1,6 @@
+<div *ngIf="lat && lng" class="card h-15rem">
+    <mgl-map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[14]" [center]="[lng, lat]">
+        <!-- Marker -->
+        <mgl-marker [lngLat]="[lng, lat]"></mgl-marker>
+    </mgl-map>
+</div>

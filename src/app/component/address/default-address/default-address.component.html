@@ -3,7 +3,7 @@
     <div class="card w-6">
         <div class="grid align-items-center">
             <div class="col-6">
-                <iframe [src]="mapURL" width="auto" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <app-display-map [lat]="address.latitude" [lng]="address.longitude"></app-display-map>
             </div>
             <div class="col-4">
                 <div class="text-lg font-semibold text-color-secondary my-2">

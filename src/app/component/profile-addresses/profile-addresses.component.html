@@ -27,9 +27,9 @@
                 <div class="card">
                     <!--Map-->
                     <div>
-                        <iframe [src]="mapURL(address?.latitude,address?.longitude)" width="100%" style="border:0;"
-                            allowfullscreen="" loading="lazy"></iframe>
+                        <app-display-map [lat]="address?.latitude" [lng]="address?.longitude"></app-display-map>
                     </div>
+
                     <!--Map Body-->
                     <div class="m-5">
                         <div class="text-lg font-semibold text-color-secondary my-2">

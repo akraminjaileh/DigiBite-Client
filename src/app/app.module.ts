@@ -38,6 +38,8 @@ import { ProfileAddressesComponent } from './component/profile-addresses/profile
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvoiceComponent } from './component/invoice/invoice.component';
 import { OrderDetailsComponent } from './component/order-details/order-details.component';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { DisplayMapComponent } from './component/display-map/display-map.component';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -69,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ProfileAddressesComponent,
     InvoiceComponent,
     OrderDetailsComponent,
+    DisplayMapComponent,
 
   ],
   imports: [
@@ -87,6 +90,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiYWtyYW1pbmphaWxlaCIsImEiOiJjbTVzZ3lxcHIwYmY0MmlwYTA5emRoNGU3In0.7Tg-mEaepfEdGZ8g3ufxSg'
     })
 
   ],
@@ -111,8 +117,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: ErrorInterceptor,
       multi: true,
     },
-    DialogService
+    DialogService,
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

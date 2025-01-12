@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddressDTO } from 'src/app/dtos/addressDTO';
 import { AddressService } from 'src/app/Services/address.service';
@@ -16,13 +15,11 @@ export class DefaultAddressComponent {
 
   private subscription: Subscription = new Subscription;
 
-  mapURL: SafeResourceUrl | undefined;
   address: AddressDTO | undefined;
   ref: DynamicDialogRef | undefined;
   addressId: number | undefined;
 
   constructor(
-    private sanitizer: DomSanitizer,
     private service: AddressService,
     public dialogService: DialogService,
     private behavior: BehaviorService
@@ -37,11 +34,7 @@ export class DefaultAddressComponent {
 
           if (this.addressId) {
             this.service.getAddressById(this.addressId)
-              .subscribe(res => {
-                this.address = res;
-                const rawURL = `https://maps.google.com/maps?q=${res.latitude},${res.longitude}&hl=en&z=16&output=embed`;
-                this.mapURL = this.sanitizer.bypassSecurityTrustResourceUrl(rawURL);
-              });
+              .subscribe(res => this.address = res);
           }
         }));
 
@@ -52,8 +45,6 @@ export class DefaultAddressComponent {
             if (res) {
               this.address = res;
               this.behavior.setAddressId(res.id);
-              const rawURL = `https://maps.google.com/maps?q=${res.latitude},${res.longitude}&hl=en&z=16&output=embed`;
-              this.mapURL = this.sanitizer.bypassSecurityTrustResourceUrl(rawURL);
             }
           }));
   }

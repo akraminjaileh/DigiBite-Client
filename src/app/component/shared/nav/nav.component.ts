@@ -26,8 +26,8 @@ export class NavComponent {
   ) {
     this.items = [
       { label: 'Account setting', icon: 'pi pi-cog', routerLink: ['/account'] },
-      { label: 'Orders', icon: 'pi pi-shopping-bag', routerLink: ['/account'] },
-      { label: 'Addresses', icon: 'pi pi-map-marker', routerLink: ['/account'] },
+      { label: 'Orders', icon: 'pi pi-shopping-bag', routerLink: ['/account/orders'] },
+      { label: 'Addresses', icon: 'pi pi-map-marker', routerLink: ['/account/addresses'] },
       { separator: true },
       { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.logout() }
     ];

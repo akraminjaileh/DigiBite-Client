@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AddressDTO } from 'src/app/dtos/addressDTO';
 import { AddressesDTO } from 'src/app/dtos/addressesDTO';
@@ -17,9 +16,7 @@ export class ProfileAddressesComponent {
   address: AddressDTO | undefined;
   selectedAddresses: AddressesDTO | undefined;
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private service: AddressService) { }
+  constructor(private service: AddressService) { }
 
   ngOnInit(): void {
 
@@ -34,6 +31,7 @@ export class ProfileAddressesComponent {
         }
 
       }));
+
   }
 
 
@@ -41,16 +39,8 @@ export class ProfileAddressesComponent {
     this.service.getAddressById(id).subscribe(res => {
       this.address = res;
     });
-  }
 
-  mapURL(lat: number | undefined, long: number | undefined): SafeResourceUrl {
-    if (lat && long) {
-      const rawURL = `https://maps.google.com/maps?q=${lat},${long}&hl=en&z=16&output=embed`;
-      return this.sanitizer.bypassSecurityTrustResourceUrl(rawURL);
-    }
-    return this.sanitizer.bypassSecurityTrustResourceUrl('about:blank');
   }
-
 
 
   ngOnDestroy(): void {
