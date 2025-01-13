@@ -26,6 +26,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { BadgeModule } from 'primeng/badge';
 import { ListboxModule } from 'primeng/listbox';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 const primeng = [
   DataViewModule,
@@ -54,7 +55,8 @@ const primeng = [
   SelectButtonModule,
   InputMaskModule,
   BadgeModule,
-  ListboxModule
+  ListboxModule,
+  InputSwitchModule
 
 
 ]

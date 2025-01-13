@@ -1,0 +1,79 @@
+<div class="container">
+    <!--Map-->
+    <div class="mx-5 relative">
+
+        <app-display-map [lat]="addressForm?.value.latitude" [lng]="addressForm?.value.longitude"
+            (markerChanged)="markerChanged($event)" [canEdit]="mapEdit"></app-display-map>
+
+        <div class="absolute placement">
+            <p-button (onClick)="mapEditChange()" [icon]="mapEdit ?'pi pi-check':'pi pi-pencil'"
+                [label]="mapEdit ?'Save': 'Edit'" styleClass="p-button-help"></p-button>
+        </div>
+    </div>
+
+    <!--Body-->
+    <form *ngIf="addressForm" (ngSubmit)="onSubmit()" [formGroup]="addressForm" class="p-5 p-fluid formgrid grid">
+        <!-- Building Name -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="buildingName">Building Name</label>
+            <input pInputText id="buildingName" type="text" formControlName="buildingName" />
+            <small
+                *ngIf="addressForm.get('buildingName')?.hasError('required') && addressForm.get('buildingName')?.touched"
+                class="p-error">
+                Required
+            </small>
+        </div>
+        <!-- Address Label -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="addressLabel">Address Label</label>
+            <p-dropdown formControlName="addressLabel" [options]="label"></p-dropdown>
+        </div>
+        <!-- Apartment Number -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="apartmentNumber">Apartment Number</label>
+            <input pInputText placeholder="12,13,..." id="apartmentNumber" type="text"
+                formControlName="apartmentNumber" />
+            <small
+                *ngIf="addressForm.get('apartmentNumber')?.hasError('required') && addressForm.get('apartmentNumber')?.touched"
+                class="p-error">
+                Required
+            </small>
+        </div>
+        <!--floor-->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="floor">Floor</label>
+            <input pInputText placeholder="1st,2nd,1,2,..." id="floor" type="text" formControlName="floor" />
+            <small *ngIf="addressForm.get('floor')?.hasError('required') && addressForm.get('floor')?.touched"
+                class="p-error">
+                Required
+            </small>
+        </div>
+
+        <!--street -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="street">Street</label>
+            <input pInputText id="street" type="text" formControlName="street" />
+            <small *ngIf="addressForm.get('street')?.hasError('required') && addressForm.get('street')?.touched"
+                class="p-error">
+                Required
+            </small>
+        </div>
+        <!-- Additional Direction -->
+        <div class="field col-12 md:col-6">
+            <label htmlFor="additionalDirection">Additional Direction</label>
+            <input pInputText id="additionalDirection" type="text" formControlName="additionalDirection" />
+        </div>
+        <!-- submit Btn -->
+        <div class="field col-12 grid mt-3">
+            <div class="col-6">
+                <button pButton type="submit" label="Save" styleClass="p-button-help"></button>
+            </div>
+            <!--isPrimary-->
+            <div class="col-6 flex align-items-center px-5">
+                <label htmlFor="isPrimary">Make as Default</label>
+                <p-inputSwitch class="ml-4" formControlName="isPrimary"></p-inputSwitch>
+            </div>
+        </div>
+    </form>
+
+</div>

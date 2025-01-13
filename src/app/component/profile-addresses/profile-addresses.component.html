@@ -1,17 +1,19 @@
 <app-account>
     <div class="card p-5">
         <!--Header-->
-        <div class="text-center">
-            <h2 class="text-primary text-2xl font-bold">Your Addresses</h2>
-            <p-divider></p-divider>
+        <div class="flex justify-content-between">
+            <h2 class="text-secondary text-2xl font-bold">Your Addresses</h2>
+            <p-button type="button" icon="pi pi-plus" label="Add New Address" (onClick)="openDialog(undefined)"
+                styleClass="p-button-outlined "></p-button>
         </div>
+        <p-divider></p-divider>
         <!--Body-->
         <div class="grid">
 
             <!--Menu-->
             <div class="col-4">
                 <p-listbox [options]="addresses" (onChange)="getAddress($event.value.id)"
-                    [(ngModel)]="selectedAddresses" optionLabel="buildingName" [listStyle]="{ 'max-height': '250px' }"
+                    [(ngModel)]="selectedAddresses" optionLabel="buildingName" [listStyle]="{ 'max-height': '408px' }"
                     [style]="{ width: '15rem' }">
                     <ng-template let-address pTemplate="item">
                         <div class="flex align-items-center gap-2 my-3">
@@ -30,7 +32,7 @@
                         <app-display-map [lat]="address?.latitude" [lng]="address?.longitude"></app-display-map>
                     </div>
 
-                    <!--Map Body-->
+                    <!--Body-->
                     <div class="m-5">
                         <div class="text-lg font-semibold text-color-secondary my-2">
                             <p>{{address?.buildingName}}</p>
@@ -48,9 +50,10 @@
                             </p>
                         </div>
                     </div>
-
-                    <div class="absolute top-50 right-0 mx-2">
-                        <p-button label="Info" styleClass="p-button-outlined p-button-info"></p-button>
+                    <!--Dialog Btn-->
+                    <div class="absolute placement">
+                        <p-button type="button" (onClick)="openDialog(address)"
+                            styleClass="p-button-outlined p-button-info">Edit</p-button>
                     </div>
 
                 </div>

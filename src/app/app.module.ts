@@ -40,6 +40,8 @@ import { InvoiceComponent } from './component/invoice/invoice.component';
 import { OrderDetailsComponent } from './component/order-details/order-details.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { DisplayMapComponent } from './component/display-map/display-map.component';
+import { UpdateAddressComponent } from './component/address/update-address/update-address.component';
+import * as mapboxgl from 'mapbox-gl';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -72,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     InvoiceComponent,
     OrderDetailsComponent,
     DisplayMapComponent,
+    UpdateAddressComponent,
 
   ],
   imports: [
@@ -122,4 +125,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    //For Arabic Map
+    (mapboxgl as any).setRTLTextPlugin(
+      'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+      () => { },
+      false
+    );
+  }
+}

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { AddressDTO } from 'src/app/dtos/addressDTO';
 import { AddressesDTO } from 'src/app/dtos/addressesDTO';
 import { AddressService } from 'src/app/Services/address.service';
+import { UpdateAddressComponent } from '../address/update-address/update-address.component';
 
 @Component({
   selector: 'app-profile-addresses',
@@ -15,8 +17,12 @@ export class ProfileAddressesComponent {
   addresses: AddressesDTO[] = [];
   address: AddressDTO | undefined;
   selectedAddresses: AddressesDTO | undefined;
+  ref: DynamicDialogRef = new DynamicDialogRef;
 
-  constructor(private service: AddressService) { }
+
+  constructor(
+    private service: AddressService,
+    public dialogService: DialogService) { }
 
   ngOnInit(): void {
 
@@ -26,8 +32,8 @@ export class ProfileAddressesComponent {
         this.addresses = res;
 
         if (res) {
-          this.selectedAddresses = res[0];
-          this.getAddress(res[0]?.id);
+          this.selectedAddresses = res.find(x => x.isPrimary == true) || res[0];
+          this.getAddress(this.selectedAddresses.id);
         }
 
       }));
@@ -39,6 +45,24 @@ export class ProfileAddressesComponent {
     this.service.getAddressById(id).subscribe(res => {
       this.address = res;
     });
+
+  }
+
+
+
+  openDialog(address: AddressDTO | undefined) {
+
+    this.ref = this.dialogService.open(UpdateAddressComponent,
+      {
+        data: {
+          address: address
+        },
+        header: 'Address Details',
+        width: '70%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false
+      });
 
   }
 

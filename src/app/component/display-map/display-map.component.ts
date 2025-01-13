@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
-import { AddressDTO } from 'src/app/dtos/addressDTO';
-import { AddressService } from 'src/app/Services/address.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-display-map',
@@ -9,19 +7,21 @@ import { AddressService } from 'src/app/Services/address.service';
   styleUrls: ['./display-map.component.css']
 })
 export class DisplayMapComponent {
+
   @Input() lat: number | undefined;
   @Input() lng: number | undefined;
+  @Input() canEdit: boolean = false;
 
-  ngOnInit(): void {
-    //For Arabic Address
-    (mapboxgl as any).setRTLTextPlugin(
-      'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
-      () => { },
-      false
-    );
-    console.log('lat', this.lat)
-    console.log('lat', this.lng)
+  @Output() markerChanged: EventEmitter<{ lat: number, lng: number }> = new EventEmitter();
+
+  // Called when the map drag ends
+  onMapDragEnd(event: any): void {
+    const map = event.target;
+    const center = map.getCenter();
+    this.lng = center.lng;
+    this.lat = center.lat;
+    this.markerChanged.emit({ lat: center.lat, lng: center.lng });
+    console.log(this.lat, this.lng);
   }
-
 
 }
