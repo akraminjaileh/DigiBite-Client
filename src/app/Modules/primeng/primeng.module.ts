@@ -27,6 +27,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { BadgeModule } from 'primeng/badge';
 import { ListboxModule } from 'primeng/listbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 const primeng = [
   DataViewModule,
@@ -56,7 +57,8 @@ const primeng = [
   InputMaskModule,
   BadgeModule,
   ListboxModule,
-  InputSwitchModule
+  InputSwitchModule,
+  ConfirmPopupModule
 
 
 ]

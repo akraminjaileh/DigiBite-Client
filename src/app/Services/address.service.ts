@@ -38,12 +38,16 @@ export class AddressService {
       );
   }
 
+  createAddress(input: any): Observable<any> {
+    return this.api.post(apiUrls.CustomerAction.address, input);
+  }
+
   updateAddress(input: AddressDTO, id: number): Observable<any> {
     return this.api.put(apiUrls.CustomerAction.address, id, input);
   }
 
-  createAddress(input: any): Observable<any> {
-    return this.api.post(apiUrls.CustomerAction.address, input);
+  removeAddress(id: number): Observable<any> {
+    return this.api.delete(apiUrls.CustomerAction.address, id);
   }
 
 }

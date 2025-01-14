@@ -67,10 +67,10 @@ export class NavComponent {
   }
 
   logout() {
-    localStorage.removeItem('expires')
-    localStorage.removeItem('token')
-    localStorage.removeItem('customerName')
-    this.refreshComponent()
+    localStorage.removeItem('expires');
+    localStorage.removeItem('token');
+    localStorage.removeItem('customerName');
+    location.reload();
   }
 
 

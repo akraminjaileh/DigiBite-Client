@@ -4,13 +4,15 @@
         <p-galleria [value]="item.imageUrls" thumbnailsPosition="button" [showItemNavigatorsOnHover]="true"
             [showItemNavigators]="true" [containerStyle]="{ 'max-width': '440px' }" [numVisible]="3">
             <ng-template pTemplate="item" let-item>
-                <img [src]="imageHandler(item.imageUrl)" (error)="onImageError($event)"
-                    [alt]="item.altText || item.fileName" style="width: 100%; height: auto; display: block;" />
+                <img [src]="imageHandler(item.imageUrl.imageUrl)" (error)="onImageError($event)"
+                    [alt]="item.imageUrls.altText || item.imageUrls.fileName"
+                    style="width: 100%; height: auto; display: block;" />
             </ng-template>
             <ng-template pTemplate="thumbnail" let-item>
                 <div class="grid grid-nogutter justify-content-center">
-                    <img [src]="imageHandler(item.imageUrl)" (error)="onImageError($event)"
-                        style="display: block; max-width: 150px;" [alt]="item.altText || item.fileName" />
+                    <img [src]="imageHandler(item.imageUrl.imageUrl)" (error)="onImageError($event)"
+                        style="display: block; max-width: 150px;"
+                        [alt]="item.imageUrls.altText || item.imageUrls.fileName" />
                 </div>
             </ng-template>
         </p-galleria>

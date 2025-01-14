@@ -5,11 +5,14 @@ import { AddressDTO } from 'src/app/dtos/addressDTO';
 import { AddressesDTO } from 'src/app/dtos/addressesDTO';
 import { AddressService } from 'src/app/Services/address.service';
 import { UpdateAddressComponent } from '../address/update-address/update-address.component';
+import { ConfirmationService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-addresses',
   templateUrl: './profile-addresses.component.html',
-  styleUrls: ['./profile-addresses.component.css']
+  styleUrls: ['./profile-addresses.component.css'],
+  providers: [ConfirmationService]
 })
 export class ProfileAddressesComponent {
 
@@ -22,7 +25,9 @@ export class ProfileAddressesComponent {
 
   constructor(
     private service: AddressService,
-    public dialogService: DialogService) { }
+    public dialogService: DialogService,
+    private confirmationService: ConfirmationService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -66,6 +71,39 @@ export class ProfileAddressesComponent {
 
   }
 
+  confirm(event: Event, id: number | undefined) {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: 'Are you sure to delete?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.remove(id);
+      },
+      reject: () => {
+        this.confirmationService.close();
+      }
+    });
+  }
+
+  remove(id: number | undefined) {
+    if (id)
+      this.service.removeAddress(id).subscribe(() => {
+        this.confirmationService.close();
+        this.refreshComponent();
+      });
+  }
+
+
+  refreshComponent() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/Fake-Url-For-Reload',
+      {
+        skipLocationChange: true
+
+      }).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

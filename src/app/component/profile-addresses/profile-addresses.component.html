@@ -1,5 +1,5 @@
 <app-account>
-    <div class="card p-5">
+    <div class="card p-5 mnl">
         <!--Header-->
         <div class="flex justify-content-between">
             <h2 class="text-secondary text-2xl font-bold">Your Addresses</h2>
@@ -50,10 +50,15 @@
                             </p>
                         </div>
                     </div>
-                    <!--Dialog Btn-->
+                    <!--Action Btn-->
                     <div class="absolute placement">
                         <p-button type="button" (onClick)="openDialog(address)"
                             styleClass="p-button-outlined p-button-info">Edit</p-button>
+                        <span class="mx-2">
+                            <p-confirmPopup></p-confirmPopup>
+                            <p-button type="button" (onClick)="confirm($event,address?.id)"
+                                styleClass="p-button-outlined p-button-danger">Delete</p-button>
+                        </span>
                     </div>
 
                 </div>

@@ -13,7 +13,8 @@
         <!--API Category-->
         <div *ngFor="let category of categories" class="col-fixed" style="width:120px">
             <div (click)="onClickCategory(category.id)" class="card text-center border-0 bg-transparent">
-                <img [src]="imageHandler(category.imageUrl)" (error)="onImageError($event)" [alt]="category.name"
+                <img [src]="imageHandler(category.imageUrl?.imageUrl)" (error)="onImageError($event)"
+                    [alt]="category.imageUrl?.altText || category.imageUrl?.fileName"
                     class="category-image rounded-circle img-fluid mx-auto d-block cursor-pointer hover:shadow-6">
                 <div class="card-body p-2">
                     <p class="card-text text-muted small mt-2">{{ category.name }}</p>
