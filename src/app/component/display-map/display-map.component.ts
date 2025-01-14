@@ -21,7 +21,6 @@ export class DisplayMapComponent {
     this.lng = center.lng;
     this.lat = center.lat;
     this.markerChanged.emit({ lat: center.lat, lng: center.lng });
-    console.log(this.lat, this.lng);
   }
 
 }

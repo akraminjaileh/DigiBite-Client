@@ -25,7 +25,8 @@ export class CategoryComponent {
   }
 
   onClickCategory(catId: number) {
-    this.behavior.setCategoryId(catId)
+    this.behavior.setCategoryId(catId);
+    this.categoryId = catId;
   }
 
   imageHandler(url: string | undefined) {
