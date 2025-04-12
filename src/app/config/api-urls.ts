@@ -1,6 +1,6 @@
-const localURL: string = "https://localhost:7161";
-const productionURL = "";
-const BASE_URL: string = localURL;
+import { environment } from "src/environments/environment";
+
+const BASE_URL: string = environment.baseUrl;
 
 export const apiUrls = {
     base: `${BASE_URL}`,

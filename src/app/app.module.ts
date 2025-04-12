@@ -42,6 +42,7 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { DisplayMapComponent } from './component/display-map/display-map.component';
 import { UpdateAddressComponent } from './component/address/update-address/update-address.component';
 import * as mapboxgl from 'mapbox-gl';
+import { ThemeSwitcherComponent } from './component/shared/theme-switcher/theme-switcher.component';
 
 // for translate i18n
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -75,6 +76,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     OrderDetailsComponent,
     DisplayMapComponent,
     UpdateAddressComponent,
+    ThemeSwitcherComponent,
 
   ],
   imports: [

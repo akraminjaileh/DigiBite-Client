@@ -1,7 +1,8 @@
 <div *ngIf="lat && lng" class="card">
     <div class="relative h-15rem w-100 p-0 m-0 g-0">
-        <mgl-map (mapDragEnd)="canEdit ? onMapDragEnd($event) : undefined" [style]="'mapbox://styles/mapbox/streets-v9'"
-            [zoom]="[14]" [center]="canEdit ? [lng, lat] : [lng, lat]">
+        <mgl-map (mapDragEnd)="canEdit ? onMapDragEnd($event) : undefined"
+            [style]="isDark ?'mapbox://styles/mapbox/dark-v11':'mapbox://styles/mapbox/streets-v9'" [zoom]="[14]"
+            [center]="canEdit ? [lng, lat] : [lng, lat]">
             <!-- Marker -->
             <mgl-marker *ngIf="! canEdit" [lngLat]="[lng, lat]"></mgl-marker>
         </mgl-map>

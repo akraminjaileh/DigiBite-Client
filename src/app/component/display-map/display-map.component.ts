@@ -14,6 +14,8 @@ export class DisplayMapComponent {
 
   @Output() markerChanged: EventEmitter<{ lat: number, lng: number }> = new EventEmitter();
 
+  isDark: boolean = localStorage.getItem('theme') == 'arya-green';
+
   // Called when the map drag ends
   onMapDragEnd(event: any): void {
     const map = event.target;

@@ -17,21 +17,21 @@ export class AccountComponent {
         label: 'Profile',
         icon: 'pi pi-user',
         routerLink: '/account',
-        style: router.url.endsWith('/account') ? { color: '#495057', 'background-color': '#E8F5E9', 'border': '2px solid #b2ddb4' } : {}
+        styleClass: router.url.endsWith('/account') ? 'menu-highlight' : ''
       },
       { separator: true },
       {
         label: 'Orders',
         icon: 'pi pi-box',
         routerLink: '/account/orders',
-        style: router.url.includes('/account/orders') ? { color: '#495057', 'background-color': '#E8F5E9', 'border': '2px solid #b2ddb4' } : {}
+        styleClass: router.url.includes('/account/orders') ? 'menu-highlight' : ''
       },
       { separator: true },
       {
         label: 'Addresses',
         icon: 'pi pi-map',
         routerLink: '/account/addresses',
-        style: router.url.includes('/account/addresses') ? { color: '#495057', 'background-color': '#E8F5E9', 'border': '2px solid #b2ddb4' } : {}
+        styleClass: router.url.includes('/account/addresses') ? 'menu-highlight' : ''
       }
     ];
   }

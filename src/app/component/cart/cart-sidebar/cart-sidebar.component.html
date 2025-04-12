@@ -29,7 +29,7 @@
                     </p-button>
                 </span>
 
-                <span class="text-xs font-semibold text-color-secondary">
+                <span class="text-xs font-semibold text-secondary">
                     {{ci.quantity + ' x'}}
                     <span class="text-sm text-primary">
                         {{ci.itemPrice | jdCurrency}}
@@ -38,7 +38,7 @@
             </div>
             <!--Addon-->
             <div *ngFor="let addon of ci.cartItemAddons" class="flex justify-content-between mx-2 flex-wrap">
-                <span class="text-color-secondary text-xs">
+                <span class="text-secondary text-xs">
                     {{addon.addonName}}
                 </span>
                 <span class="text-xs text-primary">
@@ -65,35 +65,35 @@
         </h2>
         <!--Subtotal-->
         <div class="flex justify-content-between  flex-wrap">
-            <span class="text-color-secondary text-xs">Subtotal</span>
+            <span class="text-secondary text-xs">Subtotal</span>
             <span class="text-xs text-primary">
                 {{cart?.subtotal | jdCurrency}}
             </span>
         </div>
         <!--Service Fee-->
         <div *ngIf="cart?.serviceFee" class="flex justify-content-between  flex-wrap">
-            <span class="text-color-secondary text-xs">Service Fee</span>
+            <span class="text-secondary text-xs">Service Fee</span>
             <span class="text-xs text-primary">
                 {{cart?.serviceFee | jdCurrency}}
             </span>
         </div>
         <!--Delivery Fee-->
         <div *ngIf="cart?.deliveryFee" class="flex justify-content-between  flex-wrap">
-            <span class="text-color-secondary text-xs">Delivery Fee</span>
+            <span class="text-secondary text-xs">Delivery Fee</span>
             <span class="text-xs text-primary">
                 {{cart?.deliveryFee | jdCurrency}}
             </span>
         </div>
         <!--Discount-->
         <div *ngIf="cart?.discount" class="flex justify-content-between  flex-wrap">
-            <span class="text-color-secondary text-xs">Discount</span>
+            <span class="text-secondary text-xs">Discount</span>
             <span class="text-xs text-primary">
                 {{cart?.discount | jdCurrency}}
             </span>
         </div>
         <!--Voucher Discount-->
         <div *ngIf="cart?.voucherDiscount" class="flex justify-content-between  flex-wrap">
-            <span class="text-color-secondary text-xs">Voucher Discount</span>
+            <span class="text-secondary text-xs">Voucher Discount</span>
             <span class="text-xs text-primary">
                 {{cart?.voucherDiscount | jdCurrency}}
             </span>

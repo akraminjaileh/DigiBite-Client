@@ -45,8 +45,7 @@ body {
 
 
 .p-galleria-thumbnail-container {
-    background-color: white !important;
-    /* margin: 0 30px; */
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .p-galleria-thumbnail-container img {

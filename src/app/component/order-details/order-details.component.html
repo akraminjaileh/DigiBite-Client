@@ -51,35 +51,35 @@
         <div class="text-sm col-6">
             <!--Subtotal-->
             <div>
-                <span class="text-color-secondary">Subtotal:</span>
+                <span class="text-secondary">Subtotal:</span>
                 <span class="text-primary mx-1">
                     {{orderDetails?.cart?.subtotal | jdCurrency}}
                 </span>
             </div>
             <!--Service Fee-->
             <div *ngIf="orderDetails?.cart?.serviceFee">
-                <span class="text-color-secondary">Service Fee:</span>
+                <span class="text-secondary">Service Fee:</span>
                 <span class="text-primary mx-1">
                     {{orderDetails?.cart?.serviceFee | jdCurrency}}
                 </span>
             </div>
             <!--Delivery Fee-->
             <div *ngIf="orderDetails?.cart?.deliveryFee">
-                <span class="text-color-secondary">Delivery Fee:</span>
+                <span class="text-secondary">Delivery Fee:</span>
                 <span class=" text-primary mx-1">
                     {{orderDetails?.cart?.deliveryFee | jdCurrency}}
                 </span>
             </div>
             <!--Discount-->
             <div *ngIf="orderDetails?.cart?.discount">
-                <span class="text-color-secondary ">Discount:</span>
+                <span class="text-secondary ">Discount:</span>
                 <span class=" text-primary mx-1">
                     {{orderDetails?.cart?.discount | jdCurrency}}
                 </span>
             </div>
             <!--Voucher Discount-->
             <div *ngIf="orderDetails?.cart?.voucherDiscount">
-                <span class="text-color-secondary ">Voucher Discount:</span>
+                <span class="text-secondary ">Voucher Discount:</span>
                 <span class=" text-primary mx-1">
                     {{orderDetails?.cart?.voucherDiscount | jdCurrency}}
                 </span>

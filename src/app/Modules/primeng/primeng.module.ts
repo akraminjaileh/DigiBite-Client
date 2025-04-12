@@ -60,7 +60,6 @@ const primeng = [
   InputSwitchModule,
   ConfirmPopupModule
 
-
 ]
 @NgModule({
 
